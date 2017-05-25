@@ -4,24 +4,33 @@ var cool = require('cool-ascii-faces');
 var botID = process.env.BOT_ID;
 
 function respond() {
-  var request = JSON.parse(this.req.chunks[0]),
-      botRegex = /^\/hello$/;
-
-  if(request.text && botRegex.test(request.text)) {
-    this.res.writeHead(200);
-    postMessage();
-    this.res.end();
-  } else {
-    console.log("don't care");
-    this.res.writeHead(200);
-    this.res.end();
-  }
+	var request = JSON.parse(this.req.chunks[0]),
+    greeting = /^\/hello$/;
+	
+	postMessage(request);
+	
+	// if (request.text) {
+		// if(greeting.test(request.text)) {
+			// this.res.writeHead(200);
+			// postMessage("Fuck off Pranav.");
+			// this.res.end();
+		// } else {
+			// console.log("don't care");
+			// this.res.writeHead(200);
+			// this.res.end();
+		// } 
+	// } else {
+		// console.log("don't care");
+		// this.res.writeHead(200);
+		// this.res.end();
+	// }
+  
 }
 
-function postMessage() {
+function postMessage(textResponse) {
   var botResponse, options, body, botReq;
 
-  botResponse = "Fuck off Pranav.";
+  botResponse = textResponse;
 
   options = {
     hostname: 'api.groupme.com',
