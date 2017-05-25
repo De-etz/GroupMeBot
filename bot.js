@@ -7,7 +7,7 @@ function respond() {
 	var request = JSON.parse(this.req.chunks[0]),
     greeting = /^\/hello$/;
 	
-	postMessage(request);
+	//postMessage(request);
 	
 	// if (request.text) {
 		// if(greeting.test(request.text)) {
