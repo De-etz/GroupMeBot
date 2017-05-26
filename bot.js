@@ -38,23 +38,23 @@ function postMessage() {
 		"text" : botResponse
 	};
 
-	// console.log('sending ' + botResponse + ' to ' + botID);
+	 console.log('sending ' + botResponse + ' to ' + botID);
 
-	// botReq = HTTPS.request(options, function(res) {
-		// if(res.statusCode == 202) {
-			// //neat
-		// } else {
-			// console.log('rejecting bad status code ' + res.statusCode);
-		// }
-	// });
+	 botReq = HTTPS.request(options, function(res) {
+		 if(res.statusCode == 202) {
+			 //neat
+		 } else {
+			 console.log('rejecting bad status code ' + res.statusCode);
+		 }
+	 });
 
-	// botReq.on('error', function(err) {
+	 botReq.on('error', function(err) {
 		// console.log('error posting message '  + JSON.stringify(err));
-	// });
-	// botReq.on('timeout', function(err) {
+	 });
+	 botReq.on('timeout', function(err) {
 		// console.log('timeout posting message '  + JSON.stringify(err));
-	// });
-	// botReq.end(JSON.stringify(body));
+	 });
+	 botReq.end(JSON.stringify(body));
 }
 
 function log(botResponse) {
