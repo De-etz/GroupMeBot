@@ -4,12 +4,34 @@ var cool = require('cool-ascii-faces');
 var botID = process.env.BOT_ID;
 
 function respond() {
-  var request = JSON.parse(this.req.chunks[0]),
-      botRegex = /^\/cool guy$/;
+  var me = 28705961;
+  var request = JSON.parse(this.req.chunks[0]), //The message sent to the bot
+    face = '/cool guy',
+    greeting = /^\/hello$/,
+    info = '/displayInfo',
+    date = '/getDate',
+    deetz = 'respond';
 
-  if(request.text && botRegex.test(request.text)) {
+  if (request.text && request.text.substring(0, face.length) === face) {
+    //this.res.writeHead(200);
+    postMessage("Hi!");
+    //this.res.end();
+  } else if (request.text && greeting.test(request.text)) {
     this.res.writeHead(200);
-    postMessage();
+    postMessage("Hi!!!");
+    this.res.end();
+  } else if (request.text && request.text.substring(0, info.length) === info) {
+    this.res.writeHead(200);
+    displayInfo(request);
+    this.res.end();
+  } else if (request.text && request.text.substring(0, deetz.length) === deetz) {
+    this.res.writeHead(200);
+    if (parseInt(request.user_id) === me) {
+      postMessage("Hey!");
+    } else {
+      postMessage("Request: " + request.user_id);
+      postMessage("Me: " + me);
+    }
     this.res.end();
   } else {
     console.log("don't care");
@@ -18,62 +40,44 @@ function respond() {
   }
 }
 
-function sendText(message) {
-	
+function displayInfo(request) {
+  postMessage(JSON.stringify(request));
 }
 
-function postMessage() {
-	var botResponse, options, body, botReq;
+function postMessage(message) {
+  var botResponse, options, body, botReq;
 
-	botResponse = cool();
-	
-	options = {
-		hostname: 'api.groupme.com',
-		path: '/v3/bots/post',
-		method: 'POST'
-	};
+  botResponse = message;
 
-	body = {
-		"bot_id" : botID,
-		"text" : botResponse
-	};
+  options = {
+    hostname: 'api.groupme.com',
+    path: '/v3/bots/post',
+    method: 'POST'
+  };
 
-	 console.log('sending ' + botResponse + ' to ' + botID);
+  body = {
+    "bot_id" : botID,
+    "text" : botResponse
+  };
 
-	 botReq = HTTPS.request(options, function(res) {
-		 if(res.statusCode == 202) {
-			 //neat
-		 } else {
-			 console.log('rejecting bad status code ' + res.statusCode);
-		 }
-	 });
+  console.log('sending ' + botResponse + ' to ' + botID);
 
-	 botReq.on('error', function(err) {
-		// console.log('error posting message '  + JSON.stringify(err));
-	 });
-	 botReq.on('timeout', function(err) {
-		// console.log('timeout posting message '  + JSON.stringify(err));
-	 });
-	 botReq.end(JSON.stringify(body));
+  botReq = HTTPS.request(options, function(res) {
+      if(res.statusCode == 202) {
+        //neat
+      } else {
+        console.log('rejecting bad status code ' + res.statusCode);
+      }
+  });
+
+  botReq.on('error', function(err) {
+    console.log('error posting message '  + JSON.stringify(err));
+  });
+  botReq.on('timeout', function(err) {
+    console.log('timeout posting message '  + JSON.stringify(err));
+  });
+  botReq.end(JSON.stringify(body));
 }
 
-function log(botResponse) {
-	
-	var options = {
-		hostname: 'api.groupme.com',
-		path: '/v3/bots/post',
-		method: 'POST'
-	};
-
-	console.log('sending ' + botResponse + ' to ' + botID);
-
-	var botReq = HTTPS.request(options, function(res) {
-		if(res.statusCode == 202) {
-			//neat
-		} else {
-			console.log('rejecting bad status code ' + res.statusCode);
-		}
-	});
-}
 
 exports.respond = respond;
