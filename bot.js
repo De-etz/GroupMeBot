@@ -29,8 +29,7 @@ function respond() {
     if (parseInt(request.user_id) === me) {
       postMessage("Hey!");
     } else {
-      postMessage("Request: " + request.user_id);
-      postMessage("Me: " + me);
+      postMessage("Fack off.");
     }
     this.res.end();
   } else {
