@@ -14,7 +14,7 @@ function respond() {
 
   if (request.text && request.text.substring(0, face.length) === face) {
     //this.res.writeHead(200);
-    postMessage("Hi!");
+    postMessage(cool());
     //this.res.end();
   } else if (request.text && greeting.test(request.text)) {
     this.res.writeHead(200);
@@ -47,7 +47,7 @@ function postMessage(message) {
   var botResponse, options, body, botReq;
 
   botResponse = message;
-
+  
   options = {
     hostname: 'api.groupme.com',
     path: '/v3/bots/post',
