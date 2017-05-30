@@ -5,6 +5,8 @@ var botID = process.env.BOT_ID;
 
 function respond() {
   var me = 28705961;
+  var pranav = 25448183;
+
   var request = JSON.parse(this.req.chunks[0]), //The message sent to the bot
     face = '/cool guy',
     greeting = /^\/hello$/,
@@ -31,6 +33,10 @@ function respond() {
     } else {
       postMessage("Fack off.");
     }
+    this.res.end();
+  } else if (request.text && parseInt(request.user_id) === pranav) {
+    this.res.writeHead(200);
+    postMessage("Fuck off Pranav.");
     this.res.end();
   } else {
     console.log("don't care");
