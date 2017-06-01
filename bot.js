@@ -1,52 +1,104 @@
 var HTTPS = require('https');
+var HTTP = require('http');
 var cool = require('cool-ascii-faces');
 
 var botID = process.env.BOT_ID;
+var apiKey = process.env.API_KEY;
+var locked = false;
 
 function respond() {
   var me = 28705961;
   var pranav = 25448183;
 
   var request = JSON.parse(this.req.chunks[0]), //The message sent to the bot
-    face = '/cool guy',
-    greeting = /^\/hello$/,
+    face = '/coolGuy',
+    greeting = 'hey',
     info = '/displayInfo',
     date = '/getDate',
-    deetz = 'respond';
-
-  if (request.text && request.text.substring(0, face.length) === face) {
-    //this.res.writeHead(200);
+    deetz = 'Hey Deetz',
+    lock = '/lock',
+    unlock = '/unlock',
+    gif = '/gif';
+  
+  if (locked) {
+    if (request.text && request.text.substring(0, unlock.length) === unlock) { //Message info
+      
+      if (parseInt(request.user_id) === me) {
+        locked = false;
+        postMessage("Unlocked.");
+        return;
+      } else {
+        postMessage("No.");
+      }
+    } else {
+      return;
+    }
+  }
+  
+  if (request.text && parseInt(request.user_id) === pranav) { //Pranav response
+    postMessage("Fuck off Pranav.");
+  } else if (request.text && request.text.length > gif.length && request.text.substring(0, gif.length) === gif) {
+    postMessage("Searching for '" + request.text.substring(gif.length + 1) + "...");
+    try {
+      searchGiphy(request.text.substring(gif.length + 1));
+    } catch (err) {
+      reportError();
+    }
+  } else if (request.text && request.text.substring(0, face.length) === face) { //Cool guy face
     postMessage(cool());
-    //this.res.end();
-  } else if (request.text && greeting.test(request.text)) {
-    this.res.writeHead(200);
-    postMessage("Hi!!!");
-    this.res.end();
-  } else if (request.text && request.text.substring(0, info.length) === info) {
-    this.res.writeHead(200);
+  } else if (request.text && request.text.substring(0, info.length) === info) { //Message info
     displayInfo(request);
-    this.res.end();
-  } else if (request.text && request.text.substring(0, deetz.length) === deetz) {
-    this.res.writeHead(200);
+  } else if (request.text && request.text.substring(0, lock.length) === lock) { //Lock bot
+    locked = true;
+    postMessage("Locked.");
+  } else if (request.text && request.text.substring(0, deetz.length) === deetz) { //Greet me
     if (parseInt(request.user_id) === me) {
-      postMessage("Hey!");
+      postMessage("Hello Aditya. I hope you're having a nice day.");
     } else {
       postMessage("Fack off.");
     }
-    this.res.end();
-  } else if (request.text && parseInt(request.user_id) === pranav) {
-    this.res.writeHead(200);
-    postMessage("Fuck off Pranav.");
-    this.res.end();
   } else {
     console.log("don't care");
-    this.res.writeHead(200);
-    this.res.end();
   }
 }
 
 function displayInfo(request) {
   postMessage(JSON.stringify(request));
+}
+
+function reportError() {
+  postMessage("Uh... Something went wrong =/");
+}
+
+function encodeQuery(query) {
+  return query.replace(/\s/g, '+');;
+}
+
+function searchGiphy(giphyToSearch) {
+  var options = {
+    host: 'api.giphy.com',
+    path: '/v1/gifs/search?q=' + encodeQuery(giphyToSearch) + '&api_key=' + apiKey
+  };
+
+  var callback = function(response) {
+    var str = '';
+
+    response.on('data', function(chunck){
+      str += chunck;
+    });
+
+    response.on('end', function() {
+      if (!(str && JSON.parse(str).data[0])) {
+        postMessage('Couldn\'t find a gif 💩');
+      } else {
+        var id = JSON.parse(str).data[0].id;
+        var giphyURL = 'http://i.giphy.com/' + id + '.gif';
+        postMessage(giphyURL);
+      }
+    });
+  };
+
+  HTTP.request(options, callback).end();
 }
 
 function postMessage(message) {
