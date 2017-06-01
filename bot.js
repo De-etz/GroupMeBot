@@ -38,7 +38,6 @@ function respond() {
   if (request.text && parseInt(request.user_id) === pranav) { //Pranav response
     postMessage("Fuck off Pranav.");
   } else if (request.text && request.text.length > gif.length && request.text.substring(0, gif.length) === gif) {
-    postMessage("Searching for '" + request.text.substring(gif.length + 1) + "...");
     try {
       searchGiphy(request.text.substring(gif.length + 1));
     } catch (err) {
