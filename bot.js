@@ -44,7 +44,7 @@ function listCommands(request) {
 			if (commands[i] === lock || commands[i] === unlock) {
 				
 			} else if (commands[i] === gif) {
-				cList += commands[i] + " (Use responsibly...)\r\n";
+				cList += commands[i] + " [search query] (Use responsibly...)\r\n";
 			} else {
 				cList += commands[i] + "\r\n";
 			}
