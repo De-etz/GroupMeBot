@@ -15,7 +15,8 @@ var pranav = 	25448183;
 var rohith = 	43484221;
 var joey = 		29263943;
 var zach = 		26215931;
-var ids = [bot, me, pranav, rohith, joey, zach];
+var tim = 		47476114;
+var ids = [bot, me, pranav, rohith, joey, zach, tim];
 
 //Commands
 var command = '/',
