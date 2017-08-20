@@ -6,134 +6,218 @@ var botID = process.env.BOT_ID;
 var apiKey = process.env.API_KEY;
 var locked = false;
 
-function respond() {
-  var me = 28705961;
-  var pranav = 25448183;
+var intro = 0;
 
-  var request = JSON.parse(this.req.chunks[0]), //The message sent to the bot
-    face = '/coolGuy',
-    greeting = 'hey',
-    info = '/displayInfo',
-    date = '/getDate',
-    deetz = 'Hey Deetz',
-    lock = '/lock',
-    unlock = '/unlock',
-    gif = '/gif';
-  
-  if (locked) {
-    if (request.text && request.text.substring(0, unlock.length) === unlock) { //Message info
-      
-      if (parseInt(request.user_id) === me) {
-        locked = false;
-        postMessage("Unlocked.");
-        return;
-      } else {
-        postMessage("No.");
-      }
-    } else {
-      return;
-    }
-  }
-  
-  if (request.text && parseInt(request.user_id) === pranav) { //Pranav response
-    postMessage("Fuck off Pranav.");
-  } else if (request.text && request.text.length > gif.length && request.text.substring(0, gif.length) === gif) {
-    try {
-      searchGiphy(request.text.substring(gif.length + 1));
-    } catch (err) {
-      reportError();
-    }
-  } else if (request.text && request.text.substring(0, face.length) === face) { //Cool guy face
-    postMessage(cool());
-  } else if (request.text && request.text.substring(0, info.length) === info) { //Message info
-    displayInfo(request);
-  } else if (request.text && request.text.substring(0, lock.length) === lock) { //Lock bot
-    locked = true;
-    postMessage("Locked.");
-  } else if (request.text && request.text.substring(0, deetz.length) === deetz) { //Greet me
-    if (parseInt(request.user_id) === me) {
-      postMessage("Hello Aditya. I hope you're having a nice day.");
-    } else {
-      postMessage("Fack off.");
-    }
-  } else {
-    console.log("don't care");
-  }
+//User IDs
+var bot = 		395976;
+var me = 		28705961;
+var pranav = 	25448183;
+var rohith = 	43484221;
+var joey = 		29263943;
+var ids = [bot, me, pranav, rohith, joey];
+
+//Commands
+var command = '/',
+	lock = '/lock',
+	unlock = '/unlock',
+	face = '/coolGuy',
+	help = '/help',
+	info = '/displayInfo',
+	gif = '/gif';
+var commands = [command, lock, unlock, face, help, info, gif];
+
+function listCommands(request) {
+	var cList = '';
+	if (request.text.length >= help.length+4 && request.text.substring(help.length+1, help.length+4)) {
+		cList += 'List of all commands.\r\n';
+		for (i = 1; i < commands.length; i++) {
+			if (commands[i] === gif) {
+				cList += commands[i] + " (Use responsibly...)\r\n";
+			} else {
+				cList += commands[i] + "\r\n";
+			}
+		}
+	} else {
+		cList += 'List of user commands (For all commands, use "/help all")\r\n';
+		for (i = 1; i < commands.length; i++) {
+			if (commands[i] === lock || commands[i] === unlock) {
+				
+			} else if (commands[i] === gif) {
+				cList += commands[i] + " (Use responsibly...)\r\n";
+			} else {
+				cList += commands[i] + "\r\n";
+			}
+		}
+	}
+	return cList;
+}
+
+function is(request, command) {
+	if (request.text.substring(0, command.length) === command) {
+		return true;
+	} else {
+		return false;
+	}
+}
+	
+function processCommand(request) {
+	if (ids.indexOf(parseInt(request.user_id)) === -1) {
+		postMessage(parseInt(request.user_id) + ' (Ignore this)');
+	}
+	if (is(request, face)) {
+		postMessage(cool());
+	} else if (is(request, help)) {
+		postMessage(listCommands(request));
+	} else if (is(request, info)) {
+		displayInfo(request);
+	} else if (is(request, gif)) {
+		if (request.name == 'Jb Core') {
+			postMessage('No.');
+		} else {
+			searchGiphy(request.text.substring(gif.length + 1));
+		}
+	} else if (is(request, unlock)) {
+		//Silent ignore
+	} else {
+		postMessage('Unknown command. Use "/help" for a list of commands'); 
+	}
+}
+
+function respond() {
+	
+	var request = JSON.parse(this.req.chunks[0]); //The message sent to the bot
+	
+	//Check for command
+	if (request.text && parseInt(request.user_id) !== bot && request.text.substring(0, command.length) === command) {
+		//Check lock
+		manageLock(request);
+		if (locked) return;
+		
+		//Keep Pranav in line
+		if (request.text && parseInt(request.user_id) === pranav) { //Pranav response
+			var rand = Math.floor((Math.random() * 100) + 1);
+			postMessage(rand);
+			if (rand <= 10) {postMessage("Fuck off Pranav.");}
+		}
+		
+		//Run command
+		processCommand(request);
+	}
+
 }
 
 function displayInfo(request) {
-  postMessage(JSON.stringify(request));
+	postMessage(JSON.stringify(request));
 }
 
-function reportError() {
-  postMessage("Uh... Something went wrong =/");
+function reportError(err) {
+	postMessage('Error: ' + err.message);
 }
 
 function encodeQuery(query) {
-  return query.replace(/\s/g, '+');;
+	return query.replace(/\s/g, '+');;
+}
+
+function manageLock(key) {
+	
+	//Check if locking, unlocking, or neither
+	if (key.text && key.text.substring(0, lock.length) == lock) {
+		
+		if (parseInt(key.user_id) === me) {
+			if (locked) {
+				postMessage("Already locked.");
+			} else {
+				postMessage("Locked.");
+			}
+			locked = true;
+		} else {
+			postMessage("Invalid perms.");
+		}
+	} else if (key.text && key.text.substring(0, unlock.length) == unlock) {
+		if (parseInt(key.user_id) === me) {
+			if (!locked) {
+				postMessage("Already unlocked.");
+			} else {
+				postMessage("Unlocked.");
+			}
+			locked = false;
+		} else {
+			postMessage("Invalid perms.");
+		}
+	}
+	
 }
 
 function searchGiphy(giphyToSearch) {
-  var options = {
-    host: 'api.giphy.com',
-    path: '/v1/gifs/search?q=' + encodeQuery(giphyToSearch) + '&api_key=' + apiKey
-  };
+	var options = {
+		host: 'api.giphy.com',
+		path: '/v1/gifs/search?q=' + encodeQuery(giphyToSearch) + '&api_key=' + apiKey
+	};
 
-  var callback = function(response) {
-    var str = '';
+	var callback = function(response) {
+		var str = '';
 
-    response.on('data', function(chunck){
-      str += chunck;
-    });
+		response.on('data', function(chunck){
+			str += chunck;
+		});
 
-    response.on('end', function() {
-      if (!(str && JSON.parse(str).data[0])) {
-        postMessage('Couldn\'t find a gif 💩');
-      } else {
-        var id = JSON.parse(str).data[0].id;
-        var giphyURL = 'http://i.giphy.com/' + id + '.gif';
-        postMessage(giphyURL);
-      }
-    });
-  };
+		response.on('end', function() {
+			if (!(str && JSON.parse(str).data[0])) {
+				postMessage('Couldn\'t find a gif 💩');
+			} else {
+				var id = JSON.parse(str).data[0].id;
+				var giphyURL = 'http://i.giphy.com/' + id + '.gif';
+				postMessage(giphyURL);
+			}
+		});
+	};
 
-  HTTP.request(options, callback).end();
+	HTTP.request(options, callback).end();
 }
 
 function postMessage(message) {
-  var botResponse, options, body, botReq;
+	var botResponse, options, body, botReq;
 
-  botResponse = message;
-  
-  options = {
-    hostname: 'api.groupme.com',
-    path: '/v3/bots/post',
-    method: 'POST'
-  };
+	botResponse = message;
+	
+	options = {
+		hostname: 'api.groupme.com',
+		path: '/v3/bots/post',
+		method: 'POST'
+	};
 
-  body = {
-    "bot_id" : botID,
-    "text" : botResponse
-  };
+	body = {
+		"bot_id" : botID,
+		"text" : botResponse
+	};
 
-  console.log('sending ' + botResponse + ' to ' + botID);
+	console.log('sending ' + botResponse + ' to ' + botID);
 
-  botReq = HTTPS.request(options, function(res) {
-      if(res.statusCode == 202) {
-        //neat
-      } else {
-        console.log('rejecting bad status code ' + res.statusCode);
-      }
-  });
+	botReq = HTTPS.request(options, function(res) {
+			if(res.statusCode == 202) {
+				//neat
+			} else {
+				console.log('rejecting bad status code ' + res.statusCode);
+			}
+	});
 
-  botReq.on('error', function(err) {
-    console.log('error posting message '  + JSON.stringify(err));
-  });
-  botReq.on('timeout', function(err) {
-    console.log('timeout posting message '  + JSON.stringify(err));
-  });
-  botReq.end(JSON.stringify(body));
+	botReq.on('error', function(err) {
+		console.log('error posting message '	+ JSON.stringify(err));
+	});
+	botReq.on('timeout', function(err) {
+		console.log('timeout posting message '	+ JSON.stringify(err));
+	});
+	botReq.end(JSON.stringify(body));
 }
 
-
-exports.respond = respond;
+try {
+	
+	if (intro === 0) {
+		postMessage('Deetz updated succesfully.');
+		intro = 1;
+	}
+	
+	exports.respond = respond;
+} catch (err) {
+	reportError('bot.js');
+}
