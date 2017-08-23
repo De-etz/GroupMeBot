@@ -187,7 +187,7 @@ function searchGiphy(giphyToSearch) {
 function mention() {
 	var botResponse, options, body, botReq;
 
-	botResponse = "hi";
+	botResponse = "Hey!";
 	
 	options = {
 		hostname: 'api.groupme.com',
@@ -197,7 +197,7 @@ function mention() {
 
 	body = {
 		"bot_id" : botID,
-		"text" : "HEY",
+		"text" : botResponse,
 		"attachments" : [{
 			"type" : "mentions",
 			"user_ids" : [aditya],
