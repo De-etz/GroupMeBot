@@ -117,9 +117,7 @@ function is(request, command) {
 }
 	
 function processCommand(request) {
-	if (ids.indexOf(parseInt(request.user_id)) === -1) {
-		postMessage(parseInt(request.user_id) + ' (Ignore this)');
-	}
+	
 	if (is(request, face)) {
 		postMessage(cool());
 	} else if (is(request, help)) {
@@ -127,7 +125,7 @@ function processCommand(request) {
 	} else if (is(request, info)) {
 		displayInfo(request);
 	} else if (is(request, gif)) {
-		if (request.name == 'Jb Core') {
+		if (parseInt(request.user_id) == jbc) {
 			postMessage('No.');
 		} else {
 			searchGiphy(request.text.substring(gif.length + 1));
@@ -152,7 +150,7 @@ function respond() {
 		if (locked) return;
 		
 		//Keep Pranav in line
-		if (request.text && parseInt(request.user_id) === pranav) { //Pranav response
+		if (request.text && parseInt(request.user_id) === pranavr) { //Pranav response
 			var rand = Math.floor((Math.random() * 100) + 1);
 			postMessage(rand);
 			if (rand <= 10) {postMessage("Fuck off Pranav.");}
@@ -181,7 +179,7 @@ function manageLock(key) {
 	//Check if locking, unlocking, or neither
 	if (key.text && key.text.substring(0, lock.length) == lock) {
 		
-		if (parseInt(key.user_id) === aditya) {
+		if (parseInt(key.user_id) === adityas) {
 			if (locked) {
 				postMessage("Already locked.");
 			} else {
@@ -190,7 +188,7 @@ function manageLock(key) {
 			locked = true;
 		}
 	} else if (key.text && key.text.substring(0, unlock.length) == unlock) {
-		if (parseInt(key.user_id) === aditya) {
+		if (parseInt(key.user_id) === adityas) {
 			if (!locked) {
 				postMessage("Already unlocked.");
 			} else {
@@ -250,46 +248,6 @@ function announce(message) {
 			"type" : "mentions",
 			"user_ids" : ids,
 			"loci" : loci
-		}]
-	};
-
-	console.log('sending ' + botResponse + ' to ' + botID);
-
-	botReq = HTTPS.request(options, function(res) {
-			if(res.statusCode == 202) {
-				//neat
-			} else {
-				console.log('rejecting bad status code ' + res.statusCode);
-			}
-	});
-
-	botReq.on('error', function(err) {
-		console.log('error posting message '	+ JSON.stringify(err));
-	});
-	botReq.on('timeout', function(err) {
-		console.log('timeout posting message '	+ JSON.stringify(err));
-	});
-	botReq.end(JSON.stringify(body));
-}
-
-function summonUser(message) {
-	var botResponse, options, body, botReq;
-
-	botResponse = message;
-	
-	options = {
-		hostname: 'api.groupme.com',
-		path: '/v3/bots/post',
-		method: 'POST'
-	};
-
-	body = {
-		"bot_id" : botID,
-		"text" : botResponse,
-		"attachments" : [{
-			"type" : "mentions",
-			"user_ids" : [aditya, alice, kelley],
-			"loci" : [[0, 0], [0,0], [0,0]]
 		}]
 	};
 
