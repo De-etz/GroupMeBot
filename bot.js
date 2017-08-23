@@ -18,9 +18,13 @@ var zach = 		26215931;
 var tim = 		47476114;
 var ian = 		26281232;
 var ken = 		29454584;
-var alice = 	7668435;
-var claire = 	7668436;
-var ids = [bot, me, pranav, rohith, joey, zach, tim, ian, ken, alice, claire];
+var alice =		7668435;
+var claire =	7668436;
+var kelley =	24220651;
+var tori =		28690781;
+var juliag =	33611553;
+var isabel =	24401015;
+var ids = [bot, me, pranav, rohith, joey, zach, tim, ian, ken, alice, claire, kelley, tori, juliag, isabel];
 
 //Commands
 var command = '/',
@@ -136,8 +140,6 @@ function manageLock(key) {
 				postMessage("Locked.");
 			}
 			locked = true;
-		} else {
-			postMessage("Invalid perms.");
 		}
 	} else if (key.text && key.text.substring(0, unlock.length) == unlock) {
 		if (parseInt(key.user_id) === me) {
@@ -147,8 +149,6 @@ function manageLock(key) {
 				postMessage("Unlocked.");
 			}
 			locked = false;
-		} else {
-			postMessage("Invalid perms.");
 		}
 	}
 	
