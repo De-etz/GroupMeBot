@@ -90,7 +90,7 @@ function processCommand(request) {
 	} else if (is(request, unlock)) {
 		//Silent ignore
 	} else if (is(request, mention)) {
-		mention('Summoned.');
+		abde('Summoned.');
 	} else {
 		postMessage('Unknown command. Use "/help" for a list of commands'); 
 	}
@@ -184,7 +184,7 @@ function searchGiphy(giphyToSearch) {
 	HTTP.request(options, callback).end();
 }
 
-function mention(message) {
+function abde(message) {
 	var botResponse, options, body, botReq;
 
 	botResponse = message;
