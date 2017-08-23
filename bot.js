@@ -244,7 +244,7 @@ function announce(round) {
 	};
 	
 	var idsSmall = new Array(32);
-	for (i = 0; i < round*idsSmall.length; i++) {
+	for (i = (round-1)*idsSmall.length; i < round*idsSmall.length; i++) {
 		if (i > ids.length) {
 			break;
 		}
@@ -253,7 +253,7 @@ function announce(round) {
 	
 	postMessage(idsSmall.toString());
 
-	var loci = new Array(idsSmall.length);
+	var loci = new Array(ids.length - idsSmall.length);
 	for (i = 0; i < idsSmall.length; i++) {
 		if (i > ids.length) {
 			break;
