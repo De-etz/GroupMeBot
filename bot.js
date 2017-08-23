@@ -242,7 +242,7 @@ function announce(message) {
 		method: 'POST'
 	};
 	
-	var idsSmall = new Array(10);
+	var idsSmall = new Array(3);
 	for (i = 0; i < idsSmall.length; i++) {
 		idsSmall[i] = ids[i];
 	}
