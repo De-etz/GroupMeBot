@@ -244,7 +244,7 @@ function announce(message) {
 	
 	var idsSmall = new Array(30);
 	for (i = 0; i < idsSmall.length; i++) {
-		idsSmall[i] = id[i];
+		idsSmall[i] = ids[i];
 	}
 
 	var loci = new Array(idsSmall.length);
