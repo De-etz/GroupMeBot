@@ -96,7 +96,7 @@ function listCommands(request) {
 	} else {
 		cList += 'List of user commands (For all commands, use "/help all")\r\n';
 		for (i = 1; i < commands.length; i++) {
-			if (commands[i] === lock || commands[i] === unlock) {
+			if (commands[i] === lock || commands[i] === unlock || commands[i] === summon) {
 				
 			} else if (commands[i] === gif) {
 				cList += commands[i] + " [search query] (Use responsibly...)\r\n";
