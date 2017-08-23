@@ -18,6 +18,8 @@ var zach = 		26215931;
 var tim = 		47476114;
 var ian = 		26281232;
 var ken = 		29454584;
+var alice = 	7668435;
+var claire = 	7668436;
 var ids = [bot, me, pranav, rohith, joey, zach, tim, ian, ken];
 
 //Commands
