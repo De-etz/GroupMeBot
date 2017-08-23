@@ -133,7 +133,7 @@ function processCommand(request) {
 	} else if (is(request, unlock)) {
 		//Silent ignore
 	} else if (is(request, summon)) {
-		if (parseInt(request.user_id) == adityaa) {
+		if (parseInt(request.user_id) == adityas) {
 			summonAll();
 		} else {
 			postMessage('nu');
