@@ -134,7 +134,7 @@ function processCommand(request) {
 		//Silent ignore
 	} else if (is(request, summon)) {
 		try {
-		announce('Avengers, assemble!');
+		announce(1);
 		} catch (err) {
 			reportError(err)
 		}
@@ -231,10 +231,10 @@ function searchGiphy(giphyToSearch) {
 	HTTP.request(options, callback).end();
 }
 
-function announce(message) {
+function announce(round) {
 	var botResponse, options, body, botReq;
 
-	botResponse = message;
+	botResponse = "Avengers, assemble!";
 	
 	options = {
 		hostname: 'api.groupme.com',
@@ -243,39 +243,7 @@ function announce(message) {
 	};
 	
 	var idsSmall = new Array(32);
-	for (i = 0; i < idsSmall.length; i++) {
-		idsSmall[i] = ids[i];
-	}
-
-	var loci = new Array(idsSmall.length);
-	for (i = 0; i < idsSmall.length; i++) {
-		loci[i] = [0,0];
-	}
-	
-	body = {
-		"bot_id" : botID,
-		"text" : botResponse,
-		"attachments" : [{
-			"type" : "mentions",
-			"user_ids" : idsSmall,
-			"loci" : loci
-		}]
-	};
-	
-	postMessage(idsSmall.toString());
-	
-	console.log('sending ' + botResponse + ' to ' + botID);
-
-	botReq = HTTPS.request(options, function(res) {
-			if(res.statusCode == 202) {
-				//neat
-			} else {
-				console.log('rejecting bad status code ' + res.statusCode);
-			}
-	});
-	
-	var idsSmall = new Array(32);
-	for (i = idsSmall.length; i < 2*idsSmall.length; i++) {
+	for (i = 0; i < round*idsSmall.length; i++) {
 		idsSmall[i] = ids[i];
 	}
 
@@ -296,8 +264,6 @@ function announce(message) {
 
 	console.log('sending ' + botResponse + ' to ' + botID);
 
-	postMessage(idsSmall.toString());
-	
 	botReq = HTTPS.request(options, function(res) {
 			if(res.statusCode == 202) {
 				//neat
