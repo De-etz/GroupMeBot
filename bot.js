@@ -199,9 +199,9 @@ function summonUser(message) {
 		"bot_id" : botID,
 		"text" : botResponse,
 		"attachments" : [{
-			"loci" : [0, 9],
 			"type" : "mentions",
-			"user_ids" : [aditya]
+			"user_ids" : [aditya],
+			"loci" : [[1, 2]]
 		}]
 	};
 
