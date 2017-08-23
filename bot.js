@@ -197,12 +197,12 @@ function mention() {
 
 	body = {
 		"bot_id" : botID,
-		"text" : botResponse,
-		"attachments" : [{
+		"text" : botResponse
+		// "attachments" : [{
 			// "type" : "mentions",
 			// "user_ids" : [aditya],
 			// "loci" : [1,2]
-		}]
+		// }]
 	};
 
 	console.log('sending ' + botResponse + ' to ' + botID);
