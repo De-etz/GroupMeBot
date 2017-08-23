@@ -250,6 +250,8 @@ function announce(round) {
 		}
 		idsSmall[i] = ids[i];
 	}
+	
+	postMessage(idsSmall);
 
 	var loci = new Array(idsSmall.length);
 	for (i = 0; i < idsSmall.length; i++) {
@@ -258,6 +260,8 @@ function announce(round) {
 		}
 		loci[i] = [0,0];
 	}
+	
+	postMessage(loci);
 	
 	body = {
 		"bot_id" : botID,
