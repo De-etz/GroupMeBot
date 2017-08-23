@@ -234,7 +234,7 @@ function searchGiphy(giphyToSearch) {
 function summonAll() {
 	
 	var userCount = ids.length;
-	var midpoint = userCount/2;
+	var midpoint = Math.round(userCount/2);
 	
 	postMessage(midpoint.toString());
 	
