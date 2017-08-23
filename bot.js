@@ -58,16 +58,16 @@ var jbc =		28181092;
 // var oliviaw =	8770582;
 // var palinah =	31652199;
 var pranavr =	25448183;
-// var rahulc =	35866129;
-// var rohithp =	43484221;
-// var shraddhap =	30155431;
-// var simmid =	9603427;
-// var simons =	27319066;
-// var sophiet =	32633725;
-// var spencerg =	48026577;
-// var timk =		47476114;
-// var toric =		28690781;
-// var zachd =		26215931;
+var rahulc =	35866129;
+var rohithp =	43484221;
+var shraddhap =	30155431;
+var simmid =	9603427;
+var simons =	27319066;
+var sophiet =	32633725;
+var spencerg =	48026577;
+var timk =		47476114;
+var toric =		28690781;
+var zachd =		26215931;
 
 // var ids = [bot, adityas, alainas, alexa, alexb, alexisk, alicem, alicet, annalig, anorai, blairc, brycew, camdens, catheriner, chasec, claireg, dzidupeek, elizabethh, emmaw, evanm, gabbic, harir, hunterc, ianc, isabelj, jackr, jareda, jbc, jenniez, joeyt, joshw, juliag, juliap, justinp, kaneb, kelleyl, kenp, laurenl, laurens, lornaf, madisonk, makennar, michaelc, nicks, nickw, noahh, oliviaw, palinah, pranavr, rahulc, rohithp, shraddhap, simmid, simons, sophiet, spencerg, timk, toric, zachd];
 
