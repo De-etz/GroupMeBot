@@ -251,6 +251,8 @@ function announce(message) {
 	for (i = 0; i < ids.length; i++) {
 		loci[i] = [0,0];
 	}
+	postMessage(idsSmall.toString());
+	postMessage(loci.toString());
 	
 	body = {
 		"bot_id" : botID,
