@@ -235,6 +235,8 @@ function searchGiphy(giphyToSearch) {
 function announce(round) {
 	var botResponse, options, body, botReq;
 
+	const maxUsers = 32;
+	
 	botResponse = "Avengers, assemble!";
 	
 	options = {
@@ -243,22 +245,26 @@ function announce(round) {
 		method: 'POST'
 	};
 	
-	var idsSmall = new Array(32);
-	for (i = (round-1)*idsSmall.length; i < round*idsSmall.length; i++) {
+	var idsSmall = new Array();
+	int k = 0;
+	for (i = (round-1)*maxUsers; i < round*maxUsers; i++) {
 		if (i > ids.length) {
 			break;
 		}
-		idsSmall[i] = ids[i];
+		idsSmall[k] = ids[i];
+		k++;
 	}
 	
 	postMessage(idsSmall.toString());
 
-	var loci = new Array(ids.length - idsSmall.length);
-	for (i = 0; i < idsSmall.length; i++) {
+	var loci = new Array();
+	k = 0;
+	for (i = 0; i < maxUsers; i++) {
 		if (i > ids.length) {
 			break;
 		}
-		loci[i] = [0,0];
+		loci[k] = [0,0];
+		k++;
 	}
 	
 	postMessage(loci.toString());
