@@ -135,6 +135,7 @@ function processCommand(request) {
 	} else if (is(request, summon)) {
 		try {
 		announce(1);
+		announce(2);
 		} catch (err) {
 			reportError(err)
 		}
@@ -244,11 +245,17 @@ function announce(round) {
 	
 	var idsSmall = new Array(32);
 	for (i = 0; i < round*idsSmall.length; i++) {
+		if (i > ids.length) {
+			break;
+		}
 		idsSmall[i] = ids[i];
 	}
 
 	var loci = new Array(idsSmall.length);
 	for (i = 0; i < idsSmall.length; i++) {
+		if (i > ids.length) {
+			break;
+		}
 		loci[i] = [0,0];
 	}
 	
