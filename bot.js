@@ -34,8 +34,8 @@ var command = '/',
 	help = '/help',
 	info = '/displayInfo',
 	gif = '/gif',
-	mention = '/summon';
-var commands = [command, lock, unlock, face, help, info, gif, mention];
+	summon = '/summon';
+var commands = [command, lock, unlock, face, help, info, gif, summon];
 
 function listCommands(request) {
 	var cList = '';
@@ -89,8 +89,8 @@ function processCommand(request) {
 		}
 	} else if (is(request, unlock)) {
 		//Silent ignore
-	} else if (is(request, mention)) {
-		abde('Summoned.');
+	} else if (is(request, summon)) {
+		summonUser('Summoned.');
 	} else {
 		postMessage('Unknown command. Use "/help" for a list of commands'); 
 	}
@@ -184,7 +184,7 @@ function searchGiphy(giphyToSearch) {
 	HTTP.request(options, callback).end();
 }
 
-function abde(message) {
+function summonUser(message) {
 	var botResponse, options, body, botReq;
 
 	botResponse = message;
