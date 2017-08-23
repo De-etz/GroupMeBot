@@ -89,7 +89,7 @@ function processCommand(request) {
 		}
 	} else if (is(request, unlock)) {
 		//Silent ignore
-	} else if (is(request, summon)) {
+	} else if (is(request, mention)) {
 		mention();
 	} else {
 		postMessage('Unknown command. Use "/help" for a list of commands'); 
