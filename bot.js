@@ -243,7 +243,7 @@ function announce(message) {
 	};
 	
 	var loci = new Array(ids.length);
-	for (int i = 0; i < ids,length; i++) {
+	for (int i = 0; i < ids.length; i++) {
 		loci[i] = [0,0];
 	}
 	
