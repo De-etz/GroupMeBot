@@ -199,9 +199,9 @@ function mention() {
 		"bot_id" : botID,
 		"text" : botResponse,
 		"attachments" : [{
-			"type" : "mentions",
-			"user_ids" : [aditya],
-			"loci" : [1,2]
+			// "type" : "mentions",
+			// "user_ids" : [aditya],
+			// "loci" : [1,2]
 		}]
 	};
 
