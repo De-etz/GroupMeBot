@@ -242,7 +242,7 @@ function announce(message) {
 		method: 'POST'
 	};
 	
-	var idsSmall = new Array(20);
+	var idsSmall = new Array(10);
 	for (i = 0; i < idsSmall.length; i++) {
 		idsSmall[i] = ids[i];
 	}
@@ -251,8 +251,6 @@ function announce(message) {
 	for (i = 0; i < ids.length; i++) {
 		loci[i] = [0,0];
 	}
-	postMessage(ids.toString());
-	postMessage(loci.toString());
 	
 	body = {
 		"bot_id" : botID,
