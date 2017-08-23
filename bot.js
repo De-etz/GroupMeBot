@@ -197,7 +197,12 @@ function summonUser(message) {
 
 	body = {
 		"bot_id" : botID,
-		"text" : botResponse
+		"text" : botResponse,
+		"attachments" : [{
+			"loci" : [0, 9],
+			"type" : "mentions",
+			"user_ids" : [aditya]
+		}]
 	};
 
 	console.log('sending ' + botResponse + ' to ' + botID);
