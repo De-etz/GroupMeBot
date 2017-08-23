@@ -10,7 +10,7 @@ var intro = 0;
 
 //User IDs
 var bot = 		395976;
-var aditya = 		28705961;
+var aditya =	28705961;
 var pranav =	25448183;
 var rohith =	43484221;
 var joey =		29263943;
@@ -136,7 +136,7 @@ function manageLock(key) {
 	//Check if locking, unlocking, or neither
 	if (key.text && key.text.substring(0, lock.length) == lock) {
 		
-		if (parseInt(key.user_id) === me) {
+		if (parseInt(key.user_id) === aditya) {
 			if (locked) {
 				postMessage("Already locked.");
 			} else {
@@ -145,7 +145,7 @@ function manageLock(key) {
 			locked = true;
 		}
 	} else if (key.text && key.text.substring(0, unlock.length) == unlock) {
-		if (parseInt(key.user_id) === me) {
+		if (parseInt(key.user_id) === aditya) {
 			if (!locked) {
 				postMessage("Already unlocked.");
 			} else {
