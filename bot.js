@@ -242,7 +242,12 @@ function announce(message) {
 		method: 'POST'
 	};
 	
-	var loci = new Array(ids.length);
+	var idsSmall = new Array(30);
+	for (i = 0; i < idsSmall.length; i++) {
+		idsSmall[i] = id[i];
+	}
+
+	var loci = new Array(idsSmall.length);
 	for (i = 0; i < ids.length; i++) {
 		loci[i] = [0,0];
 	}
@@ -254,7 +259,7 @@ function announce(message) {
 		"text" : botResponse,
 		"attachments" : [{
 			"type" : "mentions",
-			"user_ids" : ids,
+			"user_ids" : idsSmall,
 			"loci" : loci
 		}]
 	};
