@@ -259,7 +259,7 @@ function announce(round) {
 
 	var loci = new Array();
 	k = 0;
-	for (i = 0; i < idsSmall.length; i++) {
+	for (i = 0; i < idsSmall.length - (round-1); i++) {
 		if (i > ids.length) {
 			break;
 		}
