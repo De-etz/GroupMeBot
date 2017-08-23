@@ -246,25 +246,25 @@ function announce(round) {
 	};
 	
 	var idsSmall = new Array();
-	// int k = 0;
+	int k = 0;
 	for (i = (round-1)*maxUsers; i < round*maxUsers; i++) {
 		if (i > ids.length) {
 			break;
 		}
 		// idsSmall[k] = ids[i];
-		// k++;
+		k++;
 	}
 	
 	postMessage(idsSmall.toString());
 
 	var loci = new Array();
-	// k = 0;
+	k = 0;
 	for (i = 0; i < maxUsers; i++) {
 		if (i > ids.length) {
 			break;
 		}
 		// loci[k] = [0,0];
-		// k++;
+		k++;
 	}
 	
 	postMessage(loci.toString());
