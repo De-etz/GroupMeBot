@@ -236,7 +236,7 @@ function summonAll() {
 	var userCount = ids.length;
 	var midpoint = userCount/2;
 	
-	postMessage(midpoint);
+	postMessage(midpoint.toString());
 	
 	var usersPart = [];
 	var k = 0;
