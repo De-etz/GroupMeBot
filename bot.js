@@ -235,7 +235,7 @@ function searchGiphy(giphyToSearch) {
 function announce(round) {
 	var botResponse, options, body, botReq;
 
-	const maxUsers = 32;
+	var maxUsers = 32;
 	
 	botResponse = "Avengers, assemble!";
 	
