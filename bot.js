@@ -243,7 +243,9 @@ function announce(message) {
 	};
 	
 	var loci = new Array(ids.length);
-	loci.fill([0,0]);
+	for (int i = 0; i < ids,length; i++) {
+		loci[i] = [0,0];
+	}
 	
 	body = {
 		"bot_id" : botID,
