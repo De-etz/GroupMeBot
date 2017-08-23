@@ -184,7 +184,7 @@ function searchGiphy(giphyToSearch) {
 	HTTP.request(options, callback).end();
 }
 
-function mention(user) {
+function mention() {
 	var botResponse, options, body, botReq;
 
 	botResponse = message;
