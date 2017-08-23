@@ -133,10 +133,10 @@ function processCommand(request) {
 	} else if (is(request, unlock)) {
 		//Silent ignore
 	} else if (is(request, summon)) {
-		try {
-		summonAll();
-		} catch (err) {
-			reportError(err)
+		if (parseInt(request.user_id) == adityaa) {
+			summonAll();
+		} else {
+			postMessage('nu');
 		}
 	} else {
 		postMessage('Unknown command. Use "/help" for a list of commands'); 
