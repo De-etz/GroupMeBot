@@ -236,8 +236,6 @@ function summonAll() {
 	var userCount = ids.length;
 	var midpoint = Math.round(userCount/2);
 	
-	postMessage(midpoint.toString());
-	
 	var firstHalf = [];
 	var k = 0;
 	for (i = 0; i < midpoint; i++) {
@@ -270,11 +268,8 @@ function summonUsers(users) {
 
 	var loci = new Array();
 	for (i = 0; i < users.length; i++) {
-		loci[i] = [0,0];
+		loci[i] = [0,19];
 	}
-	
-	postMessage(users.toString());
-	postMessage(loci.toString());
 	
 	body = {
 		"bot_id" : botID,
