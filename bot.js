@@ -133,7 +133,11 @@ function processCommand(request) {
 	} else if (is(request, unlock)) {
 		//Silent ignore
 	} else if (is(request, summon)) {
+		try {
 		announce('Avengers, assemble!');
+		} catch (err) {
+			reportError(err)
+		}
 	} else {
 		postMessage('Unknown command. Use "/help" for a list of commands'); 
 	}
