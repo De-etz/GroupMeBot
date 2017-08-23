@@ -269,7 +269,7 @@ function summonUsers(users) {
 		loci[i] = [0,0];
 	}
 	
-	postMessage(loci.toString());
+	postMessage(users.toString());
 	
 	body = {
 		"bot_id" : botID,
