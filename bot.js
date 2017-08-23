@@ -201,7 +201,7 @@ function mention() {
 		"attachments" : [{
 			"type" : "mentions",
 			"user_ids" : [aditya],
-			"loci" : [0,2]
+			"loci" : [1,2]
 		}]
 	};
 
