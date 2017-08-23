@@ -6,7 +6,7 @@ var botID = process.env.BOT_ID;
 var apiKey = process.env.API_KEY;
 var locked = false;
 
-var intro = 1;
+var intro = 0;
 
 //User IDs
 var bot = 		395976;
@@ -20,7 +20,7 @@ var ian = 		26281232;
 var ken = 		29454584;
 var alice = 	7668435;
 var claire = 	7668436;
-var ids = [bot, me, pranav, rohith, joey, zach, tim, ian, ken];
+var ids = [bot, me, pranav, rohith, joey, zach, tim, ian, ken, alice, claire];
 
 //Commands
 var command = '/',
