@@ -200,8 +200,8 @@ function summonUser(message) {
 		"text" : botResponse,
 		"attachments" : [{
 			"type" : "mentions",
-			"user_ids" : [aditya],
-			"loci" : [[0, 0]]
+			"user_ids" : [aditya, alice, kelley],
+			"loci" : [[0, 0], [1,0], [2,0]]
 		}]
 	};
 
