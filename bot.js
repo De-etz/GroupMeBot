@@ -11,19 +11,19 @@ var intro = 0;
 // User IDs
 var bot = 		395976;
 var adityas =	28705961;
-// var alainas =	26324111;
-// var alexa =		37554485;
-// var alexb =		28551558;
-// var alexisk		43694487;
-// var alicem =	7668435;
-// var alicet =	43030267;
-// var annalig =	34197001;
-// var anorai =	23240013;
-// var blairc =	25448184;
-// var brycew =	31890188;
-// var camdens =	31072505;
-// var catheriner =24098720;
-// var chasec =	27945968;
+var alainas =	26324111;
+var alexa =		37554485;
+var alexb =		28551558;
+var alexisk =	43694487;
+var alicem =	7668435;
+var alicet =	43030267;
+var annalig =	34197001;
+var anorai =	23240013;
+var blairc =	25448184;
+var brycew =	31890188;
+var camdens =	31072505;
+var catheriner =24098720;
+var chasec =	27945968;
 var claireg =	7668436;
 var dzidupeek =	37853175;
 var elizabethh =5238889;
@@ -69,7 +69,7 @@ var timk =		47476114;
 var toric =		28690781;
 var zachd =		26215931;
 
-// var ids = [bot, adityas, alainas, alexa, alexb, alexisk, alicem, alicet, annalig, anorai, blairc, brycew, camdens, catheriner, chasec, claireg, dzidupeek, elizabethh, emmaw, evanm, gabbic, harir, hunterc, ianc, isabelj, jackr, jareda, jbc, jenniez, joeyt, joshw, juliag, juliap, justinp, kaneb, kelleyl, kenp, laurenl, laurens, lornaf, madisonk, makennar, michaelc, nicks, nickw, noahh, oliviaw, palinah, pranavr, rahulc, rohithp, shraddhap, simmid, simons, sophiet, spencerg, timk, toric, zachd];
+var ids = [bot, adityas, alainas, alexa, alexb, alexisk, alicem, alicet, annalig, anorai, blairc, brycew, camdens, catheriner, chasec, claireg, dzidupeek, elizabethh, emmaw, evanm, gabbic, harir, hunterc, ianc, isabelj, jackr, jareda, jbc, jenniez, joeyt, joshw, juliag, juliap, justinp, kaneb, kelleyl, kenp, laurenl, laurens, lornaf, madisonk, makennar, michaelc, nicks, nickw, noahh, oliviaw, palinah, pranavr, rahulc, rohithp, shraddhap, simmid, simons, sophiet, spencerg, timk, toric, zachd];
 
 //Commands
 var command = '/',
