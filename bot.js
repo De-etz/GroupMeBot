@@ -134,8 +134,7 @@ function processCommand(request) {
 		//Silent ignore
 	} else if (is(request, summon)) {
 		try {
-		announce(1);
-		announce(2);
+		summonAll();
 		} catch (err) {
 			reportError(err)
 		}
