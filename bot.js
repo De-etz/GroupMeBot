@@ -201,7 +201,7 @@ function summonUser(message) {
 		"attachments" : [{
 			"type" : "mentions",
 			"user_ids" : [aditya],
-			"loci" : [[1, 2]]
+			"loci" : [[0, 0]]
 		}]
 	};
 
