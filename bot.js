@@ -6,19 +6,25 @@ var botID = process.env.BOT_ID;
 var apiKey = process.env.API_KEY;
 var locked = false;
 
-var intro = 1;
+var intro = 0;
 
 //User IDs
 var bot = 		395976;
-var me = 		28705961;
-var pranav = 	25448183;
-var rohith = 	43484221;
-var joey = 		29263943;
-var zach = 		26215931;
-var tim = 		47476114;
-var ian = 		26281232;
-var ken = 		29454584;
-var ids = [bot, me, pranav, rohith, joey, zach, tim, ian, ken];
+var aditya = 		28705961;
+var pranav =	25448183;
+var rohith =	43484221;
+var joey =		29263943;
+var zach =		26215931;
+var tim =		47476114;
+var ian =		26281232;
+var ken =		29454584;
+var alice =		7668435;
+var claire =	7668436;
+var kelley =	24220651;
+var tori =		28690781;
+var juliag =	33611553;
+var isabel =	24401015;
+var ids = [bot, aditya, pranav, rohith, joey, zach, tim, ian, ken, alice, claire, kelley, tori, juliag, isabel];
 
 //Commands
 var command = '/',
@@ -27,8 +33,9 @@ var command = '/',
 	face = '/coolGuy',
 	help = '/help',
 	info = '/displayInfo',
-	gif = '/gif';
-var commands = [command, lock, unlock, face, help, info, gif];
+	gif = '/gif',
+	mention = '/summon';
+var commands = [command, lock, unlock, face, help, info, gif, mention];
 
 function listCommands(request) {
 	var cList = '';
@@ -82,6 +89,8 @@ function processCommand(request) {
 		}
 	} else if (is(request, unlock)) {
 		//Silent ignore
+	} else if (is(request, summon)) {
+		mention();
 	} else {
 		postMessage('Unknown command. Use "/help" for a list of commands'); 
 	}
@@ -134,8 +143,6 @@ function manageLock(key) {
 				postMessage("Locked.");
 			}
 			locked = true;
-		} else {
-			postMessage("Invalid perms.");
 		}
 	} else if (key.text && key.text.substring(0, unlock.length) == unlock) {
 		if (parseInt(key.user_id) === me) {
@@ -145,8 +152,6 @@ function manageLock(key) {
 				postMessage("Unlocked.");
 			}
 			locked = false;
-		} else {
-			postMessage("Invalid perms.");
 		}
 	}
 	
@@ -178,6 +183,47 @@ function searchGiphy(giphyToSearch) {
 
 	HTTP.request(options, callback).end();
 }
+
+function mention(user) {
+	var botResponse, options, body, botReq;
+
+	botResponse = message;
+	
+	options = {
+		hostname: 'api.groupme.com',
+		path: '/v3/bots/post',
+		method: 'POST'
+	};
+
+	body = {
+		"bot_id" : botID,
+		"text" : "HEY",
+		"attachments" : [{
+			"type" : "mentions",
+			"user_ids" : [aditya],
+			"loci" : [13,13]
+		]}
+	};
+
+	console.log('sending ' + botResponse + ' to ' + botID);
+
+	botReq = HTTPS.request(options, function(res) {
+			if(res.statusCode == 202) {
+				//neat
+			} else {
+				console.log('rejecting bad status code ' + res.statusCode);
+			}
+	});
+
+	botReq.on('error', function(err) {
+		console.log('error posting message '	+ JSON.stringify(err));
+	});
+	botReq.on('timeout', function(err) {
+		console.log('timeout posting message '	+ JSON.stringify(err));
+	});
+	botReq.end(JSON.stringify(body));
+}
+
 
 function postMessage(message) {
 	var botResponse, options, body, botReq;
