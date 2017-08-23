@@ -250,6 +250,7 @@ function summonAll() {
 	k = 0;
 	for (i = midpoint; i < userCount; i++) {
 		secondHalf[k] = ids[i];
+		k++
 	}
 	summonUsers(secondHalf);
 }
@@ -273,6 +274,7 @@ function summonUsers(users) {
 	}
 	
 	postMessage(users.toString());
+	postMessage(loci.toString());
 	
 	body = {
 		"bot_id" : botID,
