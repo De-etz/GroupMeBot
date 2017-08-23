@@ -261,9 +261,43 @@ function announce(message) {
 			"loci" : loci
 		}]
 	};
+	
+	postMessage(idsSmall.toString());
+	
+	console.log('sending ' + botResponse + ' to ' + botID);
+
+	botReq = HTTPS.request(options, function(res) {
+			if(res.statusCode == 202) {
+				//neat
+			} else {
+				console.log('rejecting bad status code ' + res.statusCode);
+			}
+	});
+	
+	var idsSmall = new Array(32);
+	for (i = idsSmall.length; i < 2*idsSmall.length; i++) {
+		idsSmall[i] = ids[i];
+	}
+
+	var loci = new Array(idsSmall.length);
+	for (i = 0; i < idsSmall.length; i++) {
+		loci[i] = [0,0];
+	}
+	
+	body = {
+		"bot_id" : botID,
+		"text" : botResponse,
+		"attachments" : [{
+			"type" : "mentions",
+			"user_ids" : idsSmall,
+			"loci" : loci
+		}]
+	};
 
 	console.log('sending ' + botResponse + ' to ' + botID);
 
+	postMessage(idsSmall.toString());
+	
 	botReq = HTTPS.request(options, function(res) {
 			if(res.statusCode == 202) {
 				//neat
