@@ -90,7 +90,7 @@ function processCommand(request) {
 	} else if (is(request, unlock)) {
 		//Silent ignore
 	} else if (is(request, mention)) {
-		mention();
+		mention('Summoned.');
 	} else {
 		postMessage('Unknown command. Use "/help" for a list of commands'); 
 	}
@@ -184,10 +184,10 @@ function searchGiphy(giphyToSearch) {
 	HTTP.request(options, callback).end();
 }
 
-function mention() {
+function mention(message) {
 	var botResponse, options, body, botReq;
 
-	botResponse = "Hey!";
+	botResponse = message;
 	
 	options = {
 		hostname: 'api.groupme.com',
