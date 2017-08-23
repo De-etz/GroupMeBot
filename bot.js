@@ -232,10 +232,28 @@ function searchGiphy(giphyToSearch) {
 	HTTP.request(options, callback).end();
 }
 
-function announce(round) {
-	var botResponse, options, body, botReq;
+function summonAll() {
+	
+	var userCount = ids.length;
+	var midpoint = userCount/2;
+	
+	var usersPart = [];
+	var k = 0;
+	for (i = 0; i < midpoint; i++) {
+		usersPart[k] = ids[i];
+		k++;
+	}
+	summonUsers(usersPart);
+	
+	k = 0;
+	for (i = midpoint; i < userCount; i++) {
+		usersPart[k] = ids[i];
+	}
+	summonUsers(usersPart);
+}
 
-	const maxUsers = 32;
+function summonUsers(users) {
+	var botResponse, options, body, botReq;
 	
 	botResponse = "Avengers, assemble!";
 	
@@ -245,26 +263,11 @@ function announce(round) {
 		method: 'POST'
 	};
 	
-	var idsSmall = new Array();
-	var k = 0;
-	for (i = (round-1)*maxUsers; i < round*maxUsers; i++) {
-		if (i > ids.length) {
-			break;
-		}
-		idsSmall[k] = ids[i];
-		k++;
-	}
 	
-	postMessage(idsSmall.toString());
 
 	var loci = new Array();
-	k = 0;
-	for (i = 0; i < idsSmall.length - (round-1); i++) {
-		if (i > ids.length) {
-			break;
-		}
-		loci[k] = [0,0];
-		k++;
+	for (i = 0; i < users.length; i++) {
+		loci[i] = [0,0];
 	}
 	
 	postMessage(loci.toString());
@@ -274,7 +277,7 @@ function announce(round) {
 		"text" : botResponse,
 		"attachments" : [{
 			"type" : "mentions",
-			"user_ids" : idsSmall,
+			"user_ids" : users,
 			"loci" : loci
 		}]
 	};
