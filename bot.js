@@ -238,19 +238,20 @@ function summonAll() {
 	
 	postMessage(midpoint.toString());
 	
-	var usersPart = [];
+	var firstHalf = [];
 	var k = 0;
 	for (i = 0; i < midpoint; i++) {
-		usersPart[k] = ids[i];
+		firstHalf[k] = ids[i];
 		k++;
 	}
-	summonUsers(usersPart);
+	summonUsers(firstHalf);
 	
+	var secondHalf = [];
 	k = 0;
 	for (i = midpoint; i < userCount; i++) {
-		usersPart[k] = ids[i];
+		secondHalf[k] = ids[i];
 	}
-	summonUsers(usersPart);
+	summonUsers(secondHalf);
 }
 
 function summonUsers(users) {
