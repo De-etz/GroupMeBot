@@ -6,7 +6,7 @@ var botID = process.env.BOT_ID;
 var apiKey = process.env.API_KEY;
 var locked = false;
 
-var intro = 0;
+var intro = 1;
 
 // User IDs
 var bot = 		395976;
@@ -44,7 +44,9 @@ var juliag =	33611553;
 var juliap =	28200787;
 var justinp =	34562803;
 var kaneb =		31266486;
+var karenj =	30153959;
 var kelleyl =	24220651;
+var kennethk =	40324748;
 var kenp =		29454584;
 var laurenl =	7668434;
 var laurens =	33335699;
@@ -69,15 +71,15 @@ var timk =		47476114;
 var toric =		28690781;
 var zachd =		26215931;
 
-var ids = [bot, adityas, alainas, alexa, alexb, alexisk, alicem, alicet, annalig, anorai, blairc, brycew, camdens, catheriner, chasec, claireg, dzidupeek, elizabethh, emmaw, evanm, gabbic, harir, hunterc, ianc, isabelj, jackr, jareda, jbc, jenniez, joeyt, joshw, juliag, juliap, justinp, kaneb, kelleyl, kenp, laurenl, laurens, lornaf, madisonk, makennar, michaelc, nicks, nickw, noahh, oliviaw, palinah, pranavr, rahulc, rohithp, shraddhap, simmid, simons, sophiet, spencerg, timk, toric, zachd];
+var ids = [bot, adityas, alainas, alexa, alexb, alexisk, alicem, alicet, annalig, anorai, blairc, brycew, camdens, catheriner, chasec, claireg, dzidupeek, elizabethh, emmaw, evanm, gabbic, harir, hunterc, ianc, isabelj, jackr, jareda, jbc, jenniez, joeyt, joshw, juliag, juliap, justinp, karenj, kaneb, kelleyl, kennethk, kenp, laurenl, laurens, lornaf, madisonk, makennar, michaelc, nicks, nickw, noahh, oliviaw, palinah, pranavr, rahulc, rohithp, shraddhap, simmid, simons, sophiet, spencerg, timk, toric, zachd];
 
 //Commands
 var command = '/',
 	lock = '/lock',
 	unlock = '/unlock',
-	face = '/coolGuy',
+	face = '/coolguy',
 	help = '/help',
-	info = '/displayInfo',
+	info = '/displayinfo',
 	gif = '/gif',
 	summon = '/summon';
 var commands = [command, lock, unlock, face, help, info, gif, summon];
@@ -109,7 +111,10 @@ function listCommands(request) {
 }
 
 function is(request, command) {
-	if (request.text.substring(0, command.length) === command) {
+	
+	var userText = request.text.substring(0, command.length).toLowerCase();
+	
+	if (userText === command) {
 		return true;
 	} else {
 		return false;
@@ -135,8 +140,6 @@ function processCommand(request) {
 	} else if (is(request, summon)) {
 		if (parseInt(request.user_id) == adityas) {
 			summonAll();
-		} else {
-			postMessage('nu');
 		}
 	} else {
 		postMessage('Unknown command. Use "/help" for a list of commands'); 
@@ -157,7 +160,7 @@ function respond() {
 		if (request.text && parseInt(request.user_id) === pranavr) { //Pranav response
 			var rand = Math.floor((Math.random() * 100) + 1);
 			postMessage(rand);
-			if (rand <= 10) {postMessage("Fuck off Pranav.");}
+			if (rand <= 33) {postMessage("Fuck off Pranav.");}
 		}
 		
 		//Run command
@@ -256,19 +259,17 @@ function summonAll() {
 function summonUsers(users) {
 	var botResponse, options, body, botReq;
 	
-	botResponse = "Avengers, assemble!";
+	botResponse = "Like these messages if you received a notification from me (the bot)";
 	
 	options = {
 		hostname: 'api.groupme.com',
 		path: '/v3/bots/post',
 		method: 'POST'
 	};
-	
-	
 
 	var loci = new Array();
 	for (i = 0; i < users.length; i++) {
-		loci[i] = [0,19];
+		loci[i] = [0,59];
 	}
 	
 	body = {
