@@ -6,7 +6,7 @@ var botID = process.env.BOT_ID;
 var apiKey = process.env.API_KEY;
 var locked = false;
 
-var intro = 0;
+var intro = 1;
 
 // User IDs
 var bot = 		395976;
@@ -264,7 +264,7 @@ function summonUsers(users) {
 
 	var loci = new Array();
 	for (i = 0; i < users.length; i++) {
-		loci[i] = [0,19];
+		loci[i] = [0,59];
 	}
 	
 	body = {
