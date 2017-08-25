@@ -436,7 +436,7 @@ function generateSlap(attacker, victim) {
 		var currentChar = randPhrase.charAt(i);
 		if (currentChar == '$') {
 			i++;
-			if (phrase.charAt(i) == 'v') {
+			if (randPhrase.charAt(i) == 'v') {
 				slapPhrase += victim;
 			} else {
 				slapPhrase += attacker;
