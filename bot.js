@@ -143,7 +143,7 @@ function processCommand(request) {
 		//Silent ignore
 	} else if (is(request, slap)) {
 		try {
-			slapper.generateSlap(request.name, request.text.substring(slap.length + 1));
+			postMessage(slapper.generateSlap(request.name, request.text.substring(slap.length + 1)));
 		} catch (err) {
 			reportError(err);
 		}
