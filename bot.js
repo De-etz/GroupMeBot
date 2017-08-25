@@ -457,7 +457,13 @@ function getStock(query) {
   var url = 'http://www.alphavantage.co/query?function=GLOBAL_QUOTE&symbol=' + query + '&apikey=CT5MPU8AQULWUNS0'
   
   try {
-    var response = UrlFetchApp.fetch(url);
+    var response = HTTPS.get(url, function(res) {
+		if(res.statusCode == 202) {
+			//neat
+		} else {
+			console.log('rejecting bad status code ' + res.statusCode);
+		}
+	});
     var json = response.getContentText();
     var data = JSON.parse(json);
     
