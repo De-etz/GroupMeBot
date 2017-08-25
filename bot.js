@@ -141,7 +141,7 @@ function processCommand(request) {
 		//Silent ignore
 	} else if (is(request, testFile)) {
 		try {
-		process.message.postMessage('Hello.');
+			message.postMessage('Hello.');
 		} catch (err) {
 			reportError(err);
 		}
