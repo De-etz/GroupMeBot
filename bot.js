@@ -81,8 +81,9 @@ var command = '/',
 	help = '/help',
 	info = '/displayinfo',
 	gif = '/gif',
-	summon = '/summon';
-var commands = [command, lock, unlock, face, help, info, gif, summon];
+	summon = '/summon',
+	testFile = '/test';
+var commands = [command, lock, unlock, face, help, info, gif, summon, testFile];
 
 function listCommands(request) {
 	var cList = '';
@@ -137,6 +138,8 @@ function processCommand(request) {
 		}
 	} else if (is(request, unlock)) {
 		//Silent ignore
+	} else if (is(request, testFile)) {
+		process.message.postMessage();
 	} else if (is(request, summon)) {
 		if (parseInt(request.user_id) == adityas) {
 			summonAll();
