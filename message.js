@@ -1,4 +1,4 @@
-function postMessage(message) {
+var postMessage = function postMessage(message) {
 	var botResponse, options, body, botReq;
 
 	botResponse = message;
@@ -31,4 +31,6 @@ function postMessage(message) {
 		console.log('timeout posting message '	+ JSON.stringify(err));
 	});
 	botReq.end(JSON.stringify(body));
-}
+};
+
+module.exports.postMessage = postMessage;
