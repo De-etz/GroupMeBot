@@ -459,13 +459,13 @@ function getStock(query) {
 	
 	try {
 	
-		var response = HTTPS.get(url, function(response) {
+		var response = HTTPS.get(url, function(res) {
         // Continuously update stream with data
 			var body = '';
-			response.on('data', function(d) {
+			res.on('data', function(d) {
 				postMessage(d);
 			});
-			response.on('end', function() {
+			res.on('end', function() {
 
 				// Data reception is done, do whatever with it!
 				return body;
