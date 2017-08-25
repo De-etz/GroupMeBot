@@ -472,6 +472,7 @@ function getStock(query) {
 			res.on('end', function() {
 				parsed = JSON.parse(body);
 			});
+			return parsed.toString();
 		})
 		// var json = response.getContentText();
 		// var data = JSON.parse(json);
@@ -479,7 +480,7 @@ function getStock(query) {
 		// var price = data["Realtime Global Securities Quote"]["03. Latest Price"];
 		// var name = data["Realtime Global Securities Quote"]["02. Exchange Name"];
 		// var time = data["Realtime Global Securities Quote"]["11. Last Updated"];
-		return parsed.toString();
+		
 		}
 	catch (err)
 	{
