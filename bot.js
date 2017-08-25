@@ -458,22 +458,19 @@ function getStock(query) {
 	
 	
 	try {
-		
-		var parsed;
 	
-		var response = HTTPS.get(url, function(res) {
-			var body = ''; // Will contain the final response
-			// Received data is a buffer.
-			// Adding it to our body
-			res.on('data', function(data){
-				body += data;
-			});
-			// After the response is completed, parse it and log it to the console
-			res.on('end', function() {
-				parsed = JSON.parse(body);
-			});
-			return parsed.toString();
-		})
+		var response = HTTPS.get(url, function(response) {
+        // Continuously update stream with data
+        var body = '';
+        response.on('data', function(d) {
+            body += d;
+        });
+        response.on('end', function() {
+
+            // Data reception is done, do whatever with it!
+            return body;
+			
+        });
 		// var json = response.getContentText();
 		// var data = JSON.parse(json);
 		
