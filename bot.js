@@ -1,7 +1,7 @@
 var HTTPS = require('https');
 var HTTP = require('http');
 var cool = require('cool-ascii-faces');
-var message = require('message');
+// var message = require('message');
 
 var botID = process.env.BOT_ID;
 var apiKey = process.env.API_KEY;
@@ -141,7 +141,7 @@ function processCommand(request) {
 		//Silent ignore
 	} else if (is(request, testFile)) {
 		try {
-			message.postMessage('Hello.');
+			// message.postMessage('Hello.');
 		} catch (err) {
 			reportError(err);
 		}
