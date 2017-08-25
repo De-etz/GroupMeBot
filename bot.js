@@ -447,6 +447,26 @@ function generateSlap(attacker, victim) {
 	return slapPhrase;
 };
 
+function stock(query) {
+	
+  var url = 'http://www.alphavantage.co/query?function=GLOBAL_QUOTE&symbol=' + query + '&apikey=CT5MPU8AQULWUNS0'
+  
+  try {
+    var response = UrlFetchApp.fetch(url);
+    var json = response.getContentText();
+    var data = JSON.parse(json);
+    
+    var price = data["Realtime Global Securities Quote"]["03. Latest Price"];
+    var name = data["Realtime Global Securities Quote"]["02. Exchange Name"];
+	var time = data["Realtime Global Securities Quote"]["11. Last Updated"];
+  }
+  catch (err)
+  {
+    reportError(err);
+  }
+  return(name + "'s price as of " +  + ": " + price);
+}
+
 try {
 	
 	if (intro === 0) {
