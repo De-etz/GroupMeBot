@@ -461,16 +461,17 @@ function getStock(query) {
 	
 		var response = HTTPS.get(url, function(response) {
         // Continuously update stream with data
-        var body = '';
-        response.on('data', function(d) {
-            body += d;
-        });
-        response.on('end', function() {
+			var body = '';
+			response.on('data', function(d) {
+				body += d;
+			});
+			response.on('end', function() {
 
-            // Data reception is done, do whatever with it!
-            return body;
-			
-        });
+				// Data reception is done, do whatever with it!
+				return body;
+				
+			});
+		});
 		// var json = response.getContentText();
 		// var data = JSON.parse(json);
 		
