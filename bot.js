@@ -482,7 +482,7 @@ function getStock(query) {
 	{
 		reportError(err);
 	}
-	return parsed;
+	return parsed.toString();
 	// return(name + "'s price as of " + time + ": " + price);
 }
 
