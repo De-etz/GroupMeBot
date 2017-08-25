@@ -477,12 +477,12 @@ function getStock(query) {
 	// var price = data["Realtime Global Securities Quote"]["03. Latest Price"];
 	// var name = data["Realtime Global Securities Quote"]["02. Exchange Name"];
 	// var time = data["Realtime Global Securities Quote"]["11. Last Updated"];
+	return parsed.toString();
 	}
 	catch (err)
 	{
 		reportError(err);
 	}
-	return parsed.toString();
 	// return(name + "'s price as of " + time + ": " + price);
 }
 
