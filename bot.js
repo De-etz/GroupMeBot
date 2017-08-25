@@ -463,7 +463,7 @@ function getStock(query) {
         // Continuously update stream with data
 			var body = '';
 			response.on('data', function(d) {
-				body += d;
+				postMessage(d);
 			});
 			response.on('end', function() {
 
