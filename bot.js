@@ -432,18 +432,18 @@ function generateSlap(attacker, victim) {
 	var randPhrase = phrases[rand];
 	var slapPhrase = 'Hey';
 	
-	for (i = 0; i < randPhrase.length(); i++) {
-		// var currentChar = randPhrase.charAt(i);
-		// if (currentChar == '$') {
-			// i++;
-			// if (randPhrase.charAt(i) == 'v') {
-				// slapPhrase += victim;
-			// } else {
-				// slapPhrase += attacker;
-			// }
-		// } else {
-			// slapPhrase += currentChar;
-		// }
+	for (i = 0; i < randPhrase.length; i++) {
+		var currentChar = randPhrase.charAt(i);
+		if (currentChar == '$') {
+			i++;
+			if (randPhrase.charAt(i) == 'v') {
+				slapPhrase += victim;
+			} else {
+				slapPhrase += attacker;
+			}
+		} else {
+			slapPhrase += currentChar;
+		}
 	}	
 	
 	return slapPhrase;
