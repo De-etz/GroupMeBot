@@ -1,3 +1,6 @@
+var botID = process.env.BOT_ID;
+var apiKey = process.env.API_KEY;
+
 var postMessage = function postMessage(message) {
 	var botResponse, options, body, botReq;
 
