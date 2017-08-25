@@ -139,7 +139,11 @@ function processCommand(request) {
 	} else if (is(request, unlock)) {
 		//Silent ignore
 	} else if (is(request, testFile)) {
+		try {
 		process.message.postMessage('Hello.');
+		} catch (err) {
+			reportError(err);
+		}
 	} else if (is(request, summon)) {
 		if (parseInt(request.user_id) == adityas) {
 			summonAll();
