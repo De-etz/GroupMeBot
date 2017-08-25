@@ -85,8 +85,9 @@ var command = '/',
 	info = '/displayinfo',
 	gif = '/gif',
 	summon = '/summon',
-	slap = '/slap';
-var commands = [command, lock, unlock, face, help, info, gif, summon, slap];
+	slap = '/slap',
+	stock = '/stock';
+var commands = [command, lock, unlock, face, help, info, gif, summon, slap, stock];
 
 function listCommands(request) {
 	var cList = '';
@@ -104,8 +105,10 @@ function listCommands(request) {
 		for (i = 1; i < commands.length; i++) {
 			if (commands[i] === lock || commands[i] === unlock || commands[i] === summon) {
 				
-			} else if (commands[i] === gif) {
-				cList += commands[i] + " [search query] (Use responsibly...)\r\n";
+			} else if (commands[i] === gif || commands[i] === stock) {
+				cList += commands[i] + " [search query]\r\n";
+			} else if (commands[i] === slap) {
+				cList += commands[i] + " [victim]\r\n";
 			} else {
 				cList += commands[i] + "\r\n";
 			}
@@ -141,6 +144,8 @@ function processCommand(request) {
 		}
 	} else if (is(request, unlock)) {
 		//Silent ignore
+	} else if (is(request, stock)) {
+		postMessage(getStock(request.text.substring(stock.length + 1)));
 	} else if (is(request, slap)) {
 		try {
 			postMessage(generateSlap(names[ids.indexOf(parseInt(request.user_id))], request.text.substring(slap.length + 1)));
@@ -447,7 +452,7 @@ function generateSlap(attacker, victim) {
 	return slapPhrase;
 };
 
-function stock(query) {
+function getStock(query) {
 	
   var url = 'http://www.alphavantage.co/query?function=GLOBAL_QUOTE&symbol=' + query + '&apikey=CT5MPU8AQULWUNS0'
   
@@ -464,7 +469,7 @@ function stock(query) {
   {
     reportError(err);
   }
-  return(name + "'s price as of " +  + ": " + price);
+  return(name + "'s price as of " + time + ": " + price);
 }
 
 try {
