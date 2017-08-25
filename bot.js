@@ -429,11 +429,11 @@ function generateSlap(attacker, victim) {
 	
 	var rand = Math.floor((Math.random() * phrases.length));
 	
-	var phrase = phrases[rand];
+	var randPhrase = phrases[rand];
 	var slapPhrase = 'Hey';
 	
-	for (i = 0; i < phrase.length(); i++) {
-		var currentChar = phrase.charAt(i);
+	for (i = 0; i < randPhrase.length(); i++) {
+		var currentChar = randPhrase.charAt(i);
 		if (currentChar == '$') {
 			i++;
 			if (phrase.charAt(i) == 'v') {
