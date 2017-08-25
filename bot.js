@@ -143,7 +143,7 @@ function processCommand(request) {
 		//Silent ignore
 	} else if (is(request, slap)) {
 		try {
-			postMessage(generateSlap(request.name, request.text.substring(slap.length + 1)));
+			postMessage(generateSlap(names[ids.indexOf(parseInt(request.user_id))], request.text.substring(slap.length + 1)));
 		} catch (err) {
 			reportError(err);
 		}
@@ -387,10 +387,9 @@ function generateSlap(attacker, victim) {
 		'$v says goodbye to this cruel world.',
 		'$v got rekt.',
 		'$v was sawn in half by $a.',
-		'$v died. I blame $a.',
 		'$v was axe-murdered by $a.',
 		'$v\'s melon was split by $a.',
-		'$v was slice and diced by $a.',
+		'$v was sliced and diced by $a.',
 		'$v was split from crotch to sternum by $a.',
 		'$v\'s death put another notch in $a\'s axe.',
 		'$v died impossibly!',
@@ -400,7 +399,6 @@ function generateSlap(attacker, victim) {
 		'$v was knifed by $a.',
 		'$v fell on his sword.',
 		'$v ate a grenade.',
-		'$v practiced being $a\'s clay pigeon.',
 		'$v is what\'s for dinner!',
 		'$v was terminated by $a.',
 		'$v divided by 0',
