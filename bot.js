@@ -454,7 +454,7 @@ function generateSlap(attacker, victim) {
 
 function getStock(query) {
 	
-  var url = 'http://www.alphavantage.co/query?function=GLOBAL_QUOTE&symbol=' + query + '&apikey=CT5MPU8AQULWUNS0'
+  var url = 'https://www.alphavantage.co/query?function=GLOBAL_QUOTE&symbol=' + query + '&apikey=CT5MPU8AQULWUNS0'
   
   try {
     var response = HTTPS.get(url, function(res) {
