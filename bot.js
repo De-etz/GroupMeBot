@@ -456,29 +456,31 @@ function getStock(query) {
 	
 	var url = 'https://www.alphavantage.co/query?function=GLOBAL_QUOTE&symbol=' + query + '&apikey=CT5MPU8AQULWUNS0'
 	
-	var parsed;
 	
 	try {
-		var response = HTTPS.get(url, function(res) {
-		var body = ''; // Will contain the final response
-		// Received data is a buffer.
-		// Adding it to our body
-		res.on('data', function(data){
-			body += data;
-		});
-		// After the response is completed, parse it and log it to the console
-		res.on('end', function() {
-			parsed = JSON.parse(body);
-		});
-	})
-	// var json = response.getContentText();
-	// var data = JSON.parse(json);
+		
+		var parsed;
 	
-	// var price = data["Realtime Global Securities Quote"]["03. Latest Price"];
-	// var name = data["Realtime Global Securities Quote"]["02. Exchange Name"];
-	// var time = data["Realtime Global Securities Quote"]["11. Last Updated"];
-	return parsed.toString();
-	}
+		var response = HTTPS.get(url, function(res) {
+			var body = ''; // Will contain the final response
+			// Received data is a buffer.
+			// Adding it to our body
+			res.on('data', function(data){
+				body += data;
+			});
+			// After the response is completed, parse it and log it to the console
+			res.on('end', function() {
+				parsed = JSON.parse(body);
+			});
+		})
+		// var json = response.getContentText();
+		// var data = JSON.parse(json);
+		
+		// var price = data["Realtime Global Securities Quote"]["03. Latest Price"];
+		// var name = data["Realtime Global Securities Quote"]["02. Exchange Name"];
+		// var time = data["Realtime Global Securities Quote"]["11. Last Updated"];
+		return parsed.toString();
+		}
 	catch (err)
 	{
 		reportError(err);
