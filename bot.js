@@ -1,6 +1,7 @@
 var HTTPS = require('https');
 var HTTP = require('http');
 var cool = require('cool-ascii-faces');
+var message = require('message');
 
 var botID = process.env.BOT_ID;
 var apiKey = process.env.API_KEY;
