@@ -2,6 +2,9 @@ module.exports.searchGiphy = function searchGiphy(giphyToSearch) {
 	
 	var apiKey = process.env.API_KEY;
 	
+	var HTTPS = require('https');
+	var HTTP = require('http');
+
 	var options = {
 		host: 'api.giphy.com',
 		path: '/v1/gifs/search?q=' + giphyToSearch.replace(/\s/g, '+') + '&api_key=' + apiKey
