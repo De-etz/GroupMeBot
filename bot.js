@@ -454,7 +454,6 @@ function generateSlap(attacker, victim) {
 	return slapPhrase;
 };
 
-
 try {
 	
 	if (intro === 0) {
