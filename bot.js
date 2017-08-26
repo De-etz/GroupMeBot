@@ -3,7 +3,7 @@ var plug = './plugins/';
 var HTTPS = require('https');
 var HTTP = require('http');
 var cool = require('cool-ascii-faces');
-var giphy = requite(plug+'giphy.js');
+var giphy = require(plug+'giphy.js');
 var slapper = require(plug+'slap.js');
 
 var botID = process.env.BOT_ID;
