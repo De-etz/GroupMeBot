@@ -1,6 +1,7 @@
 var HTTPS = require('https');
 var HTTP = require('http');
 var cool = require('cool-ascii-faces');
+var fetch = require('node-fetch');
 var slapper = require('./message.js');
 
 var botID = process.env.BOT_ID;
@@ -479,7 +480,7 @@ function getStock(query) {
 		// var name = data["Realtime Global Securities Quote"]["02. Exchange Name"];
 		// var time = data["Realtime Global Securities Quote"]["11. Last Updated"];
 		
-		}
+	}
 	catch (err)
 	{
 		reportError(err);
