@@ -3,7 +3,8 @@ var plug = './plugins/';
 var HTTPS = require('https');
 var HTTP = require('http');
 var cool = require('cool-ascii-faces');
-var slapper = require(plug + 'slap.js');
+var giphy = requite(plug+'giphy.js');
+var slapper = require(plug+'slap.js');
 
 var botID = process.env.BOT_ID;
 var apiKey = process.env.API_KEY;
@@ -139,17 +140,17 @@ function processCommand(request) {
 	} else if (is(request, info)) {
 		displayInfo(request);
 	} else if (is(request, gif)) {
-		if (parseInt(request.user_id) == jbc) {
-			postMessage('No.');
+		if (request.text.length > slap.length+1) {
+			giphy.searchGiphy(request.text.substring(gif.length + 1));
 		} else {
-			searchGiphy(request.text.substring(gif.length + 1));
+			postMessage('Specify a search query (See /help for syntax)');
 		}
 	} else if (is(request, unlock)) {
 		//Silent ignore
 	} else if (is(request, stock)) {
 		
 	} else if (is(request, slap)) {
-		if (request.text.length > slap.length) {
+		if (request.text.length > slap.length+1) {
 			var attacker = names[ids.indexOf(parseInt(request.user_id))];
 			var victim = request.text.substring(slap.length + 1);
 			postMessage(slapper.generateSlap(attacker, victim));
@@ -201,10 +202,6 @@ function reportError(err) {
 	postMessage('Error: ' + err.message);
 }
 
-function encodeQuery(query) {
-	return query.replace(/\s/g, '+');;
-}
-
 function manageLock(key) {
 	
 	//Check if locking, unlocking, or neither
@@ -229,33 +226,6 @@ function manageLock(key) {
 		}
 	}
 	
-}
-
-function searchGiphy(giphyToSearch) {
-	var options = {
-		host: 'api.giphy.com',
-		path: '/v1/gifs/search?q=' + encodeQuery(giphyToSearch) + '&api_key=' + apiKey
-	};
-
-	var callback = function(response) {
-		var str = '';
-
-		response.on('data', function(chunck){
-			str += chunck;
-		});
-
-		response.on('end', function() {
-			if (!(str && JSON.parse(str).data[0])) {
-				postMessage('Couldn\'t find a gif 💩');
-			} else {
-				var id = JSON.parse(str).data[0].id;
-				var giphyURL = 'http://i.giphy.com/' + id + '.gif';
-				postMessage(giphyURL);
-			}
-		});
-	};
-
-	HTTP.request(options, callback).end();
 }
 
 function summonAll() {
