@@ -181,9 +181,13 @@ function respond() {
 			postMessage(rand);
 			if (rand <= 33) {postMessage("Fuck off Pranav.");}
 		} else {
-		
-			//Run command
-			processCommand(request);
+			
+			try {
+				//Run command
+				processCommand(request);
+			} catch (err) {
+				reportError(err);
+			}
 		}
 	}
 
@@ -357,14 +361,9 @@ function postMessage(message) {
 	botReq.end(JSON.stringify(body));
 }
 
-try {
-	
-	if (intro === 0) {
-		postMessage('Deetz updated succesfully.');
-		intro = 1;
-	}
-	
-	exports.respond = respond;
-} catch (err) {
-	reportError('bot.js');
+if (intro === 0) {
+	postMessage('Deetz updated succesfully.');
+	intro = 1;
 }
+
+exports.respond = respond;
