@@ -81,7 +81,7 @@ module.exports.generateSlap = function generateSlap(attacker, victim) {
 	var rand = Math.floor((Math.random() * phrases.length));
 	
 	var phrase = phrases[rand];
-	var slapPhrase = 'Hey';
+	var slapPhrase = '';
 	
 	for (i = 0; i < phrase.length; i++) {
 		var currentChar = phrase.charAt(i);
