@@ -146,7 +146,7 @@ function processCommand(request) {
 	} else if (is(request, unlock)) {
 		//Silent ignore
 	} else if (is(request, stock)) {
-		postMessage(getStock(request.text.substring(stock.length + 1)));
+		
 	} else if (is(request, slap)) {
 		try {
 			postMessage(generateSlap(names[ids.indexOf(parseInt(request.user_id))], request.text.substring(slap.length + 1)));
@@ -177,10 +177,11 @@ function respond() {
 			var rand = Math.floor((Math.random() * 100) + 1);
 			postMessage(rand);
 			if (rand <= 33) {postMessage("Fuck off Pranav.");}
-		}
+		} else {
 		
-		//Run command
-		processCommand(request);
+			//Run command
+			processCommand(request);
+		}
 	}
 
 }
@@ -453,40 +454,6 @@ function generateSlap(attacker, victim) {
 	return slapPhrase;
 };
 
-function getStock(query) {
-	
-	var url = 'https://www.alphavantage.co/query?function=GLOBAL_QUOTE&symbol=' + query + '&apikey=CT5MPU8AQULWUNS0'
-	
-	
-	try {
-	
-		var response = HTTPS.get(url, function(res) {
-        // Continuously update stream with data
-			var body = '';
-			res.on('data', function(d) {
-				postMessage(d);
-			});
-			res.on('end', function() {
-
-				// Data reception is done, do whatever with it!
-				return body;
-				
-			});
-		});
-		// var json = response.getContentText();
-		// var data = JSON.parse(json);
-		
-		// var price = data["Realtime Global Securities Quote"]["03. Latest Price"];
-		// var name = data["Realtime Global Securities Quote"]["02. Exchange Name"];
-		// var time = data["Realtime Global Securities Quote"]["11. Last Updated"];
-		
-	}
-	catch (err)
-	{
-		reportError(err);
-	}
-	// return(name + "'s price as of " + time + ": " + price);
-}
 
 try {
 	
