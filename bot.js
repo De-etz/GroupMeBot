@@ -149,7 +149,10 @@ function processCommand(request) {
 	} else if (is(request, slap)) {
 		try {
 		if (request.text.length > slap.length) {
-			postMessage('Phrase: ' + slapper.generateSlap(names[ids.indexOf(parseInt(request.user_id))], request.text.substring(slap.length + 1)));
+			var attacker = names[ids.indexOf(parseInt(request.user_id))];
+			var victim = request.text.substring(slap.length + 1);
+			postMessage(attacker + ', ' + victim);
+			postMessage('Phrase: ' + slapper.generateSlap(attacker, victim));
 		} else {
 			postMessage('Specify a victim (See /help for syntax)');
 		}
