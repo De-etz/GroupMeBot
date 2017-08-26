@@ -147,6 +147,7 @@ function processCommand(request) {
 	} else if (is(request, stock)) {
 		
 	} else if (is(request, slap)) {
+		postMessage('Running...');
 		try {
 		if (request.text.length > slap.length) {
 			var attacker = names[ids.indexOf(parseInt(request.user_id))];
