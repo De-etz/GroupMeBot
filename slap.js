@@ -1,4 +1,4 @@
-module.exports = function generateSlap(attacker, victim) {
+module.exports.generateSlap = function generateSlap(attacker, victim) {
 	// var phrases = [
 		// '$v was shot by $a.',
 		// '$v was pricked to death.',
