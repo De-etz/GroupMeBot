@@ -147,6 +147,7 @@ function processCommand(request) {
 	} else if (is(request, stock)) {
 		
 	} else if (is(request, slap)) {
+		try {
 		if (request.text.length > slap.length) {
 			var attacker = names[ids.indexOf(parseInt(request.user_id))];
 			var victim = request.text.substring(slap.length + 1);
@@ -155,7 +156,9 @@ function processCommand(request) {
 			postMessage('Specify a victim (See /help for syntax)');
 		}
 		postMessage(slapper.generateSlap(attacker, victim));
-		
+		} catch (err) {
+			postMessage(err);
+		}
 	} else if (is(request, summon)) {
 		if (parseInt(request.user_id) == adityas) {
 			summonAll();
