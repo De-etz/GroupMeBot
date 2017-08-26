@@ -1,7 +1,9 @@
+var plug = './plugins/';
+
 var HTTPS = require('https');
 var HTTP = require('http');
 var cool = require('cool-ascii-faces');
-var slapper = require('./slap.js');
+var slapper = require(plug + 'slap.js');
 
 var botID = process.env.BOT_ID;
 var apiKey = process.env.API_KEY;
