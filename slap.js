@@ -97,5 +97,5 @@ module.exports = function generateSlap(attacker, victim) {
 		}
 	}	
 	
-	return slapPhrase;
+	return 'Hey';
 };
