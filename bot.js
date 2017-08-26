@@ -155,7 +155,6 @@ function processCommand(request) {
 		} else {
 			postMessage('Specify a victim (See /help for syntax)');
 		}
-		postMessage(slapper.generateSlap(attacker, victim));
 		} catch (err) {
 			postMessage(err);
 		}
