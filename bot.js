@@ -141,7 +141,7 @@ function processCommand(request) {
 		displayInfo(request);
 	} else if (is(request, gif)) {
 		if (request.text.length > slap.length+1) {
-			if (null == giphy.searchGiphy(request.text.substring(gif.length + 1), apiKey)) {
+			if (giphy.searchGiphy(request.text.substring(gif.length + 1), apiKey) === null) {
 				reportError(err);
 			}
 		} else {
