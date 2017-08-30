@@ -295,7 +295,7 @@ function summonUsers(users) {
 }
 
 function getQuote(symbolToSearch) {
-	
+	try {
 	var options = {
 		host: 'api.robinhood.com',
 		path: '/quotes/' + symbolToSearch.toUpperCase() + '/'
@@ -320,7 +320,9 @@ function getQuote(symbolToSearch) {
 	};
 	
 	HTTPS.request(options, callback).end();
-	
+	} catch (err) {
+		reportError(err);
+	}
 }
 
 function searchGiphy(giphyToSearch) {
