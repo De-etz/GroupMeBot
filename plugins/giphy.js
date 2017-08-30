@@ -2,8 +2,8 @@ module.exports.searchGiphy = function searchGiphy(giphyToSearch, key) {
 	
 	var apiKey = key;
 	
-	var HTTPS = require('https');
-	var HTTP = require('http');
+	// var HTTPS = require('https');
+	// var HTTP = require('http');
 	
 	var options = {
 		host: 'api.giphy.com',
