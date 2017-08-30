@@ -296,8 +296,6 @@ function summonUsers(users) {
 
 function searchGiphy(giphyToSearch) {
 	
-	var apiKey = key;
-	
 	var options = {
 		host: 'api.giphy.com',
 		path: '/v1/gifs/search?q=' + giphyToSearch.replace(/\s/g, '+') + '&api_key=' + apiKey
