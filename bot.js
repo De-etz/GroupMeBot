@@ -1,9 +1,8 @@
 var plug = './plugins/';
 
-var process.HTTPS = require('https');
+var HTTPS = require('https');
 var HTTP = require('http');
 var cool = require('cool-ascii-faces');
-var giphy = require(plug+'giphy.js');
 var slapper = require(plug+'slap.js');
 
 var botID = process.env.BOT_ID;
@@ -141,9 +140,7 @@ function processCommand(request) {
 		displayInfo(request);
 	} else if (is(request, gif)) {
 		if (request.text.length > slap.length+1) {
-			if (giphy.searchGiphy(request.text.substring(gif.length + 1), apiKey) === null) {
-				reportError(err);
-			}
+			searchGiphy(request.text.substring(gif.length + 1), apiKey)
 		} else {
 			postMessage('Specify a search query (See /help for syntax)');
 		}
@@ -297,6 +294,36 @@ function summonUsers(users) {
 	botReq.end(JSON.stringify(body));
 }
 
+function searchGiphy(giphyToSearch) {
+	
+	var apiKey = key;
+	
+	var options = {
+		host: 'api.giphy.com',
+		path: '/v1/gifs/search?q=' + giphyToSearch.replace(/\s/g, '+') + '&api_key=' + apiKey
+	};
+	
+	var callback = function(response) {
+		var str = '';
+		
+		response.on('data', function(chunck){
+			str += chunck;
+		});
+		
+		response.on('end', function() {
+			if (!(str && JSON.parse(str).data[0])) {
+				postMessage('Couldn\'t find a gif ðŸ’©');
+			} else {
+				var id = JSON.parse(str).data[0].id;
+				var giphyURL = 'http://i.giphy.com/' + id + '.gif';
+				postMessage(giphyURL);
+			}
+		});
+	};
+	
+	HTTPS.request(options, callback).end();
+	
+}
 
 function postMessage(message) {
 	var botResponse, options, body, botReq;
