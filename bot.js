@@ -1,6 +1,6 @@
 var plug = './plugins/';
 
-var HTTPS = require('https');
+var process.HTTPS = require('https');
 var HTTP = require('http');
 var cool = require('cool-ascii-faces');
 var giphy = require(plug+'giphy.js');
@@ -141,7 +141,9 @@ function processCommand(request) {
 		displayInfo(request);
 	} else if (is(request, gif)) {
 		if (request.text.length > slap.length+1) {
-			giphy.searchGiphy(request.text.substring(gif.length + 1), apiKey);
+			if (null == giphy.searchGiphy(request.text.substring(gif.length + 1), apiKey)) {
+				reportError(err);
+			}
 		} else {
 			postMessage('Specify a search query (See /help for syntax)');
 		}
