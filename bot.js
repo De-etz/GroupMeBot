@@ -141,7 +141,7 @@ function processCommand(request) {
 		displayInfo(request);
 	} else if (is(request, gif)) {
 		if (request.text.length > slap.length+1) {
-			giphy.searchGiphy(request.text.substring(gif.length + 1));
+			giphy.searchGiphy(request.text.substring(gif.length + 1), apiKey);
 		} else {
 			postMessage('Specify a search query (See /help for syntax)');
 		}
