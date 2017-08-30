@@ -318,7 +318,7 @@ function getQuote(symbolToSearch) {
 			}
 		});
 	};
-	
+	postMessage(options.stringify());
 	// HTTPS.request(options, callback).end();
 	} catch (err) {
 		reportError(err);
