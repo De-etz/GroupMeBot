@@ -319,7 +319,7 @@ function getQuote(symbolToSearch) {
 		});
 	};
 	
-	HTTPS.request(options, callback).end();
+	// HTTPS.request(options, callback).end();
 	} catch (err) {
 		reportError(err);
 	}
