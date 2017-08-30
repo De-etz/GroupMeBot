@@ -1,6 +1,6 @@
 module.exports.searchGiphy = function searchGiphy(giphyToSearch) {
 	
-	var apiKey = process.env.API_KEY;
+	var apiKey = bot.apiKey;
 	
 	var HTTPS = require('https');
 	var HTTP = require('http');
