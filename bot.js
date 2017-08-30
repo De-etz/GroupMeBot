@@ -140,14 +140,14 @@ function processCommand(request) {
 		displayInfo(request);
 	} else if (is(request, gif)) {
 		if (request.text.length > slap.length+1) {
-			searchGiphy(request.text.substring(gif.length + 1), apiKey)
+			searchGiphy(request.text.substring(gif.length + 1), apiKey);
 		} else {
 			postMessage('Specify a search query (See /help for syntax)');
 		}
 	} else if (is(request, unlock)) {
 		//Silent ignore
 	} else if (is(request, stock)) {
-		
+		getQuote('aapl');
 	} else if (is(request, slap)) {
 		if (request.text.length > slap.length+1) {
 			var attacker = names[ids.indexOf(parseInt(request.user_id))];
@@ -292,6 +292,35 @@ function summonUsers(users) {
 		console.log('timeout posting message '	+ JSON.stringify(err));
 	});
 	botReq.end(JSON.stringify(body));
+}
+
+function getQuote(symbolToSearch) {
+	
+	var options = {
+		host: 'api.robinhood.com',
+		path: '/quotes/' + symbolToSearch.toUpperCase() + '/'
+	};
+	
+	var callback = function(response) {
+		var str = '';
+		
+		response.on('data', function(chunck){
+			str += chunck;
+		});
+		
+		response.on('end', function() {
+			if (!(str && JSON.parse(str).data[0])) {
+				postMessage('Didn\'t work ðŸ’©');
+			} else {
+				var id = JSON.parse(str).data[0].id;
+				
+				postMessage(str);
+			}
+		});
+	};
+	
+	HTTPS.request(options, callback).end();
+	
 }
 
 function searchGiphy(giphyToSearch) {
