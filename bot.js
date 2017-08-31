@@ -170,7 +170,7 @@ function respond() {
 	var request = JSON.parse(this.req.chunks[0]); //The message sent to the bot
 	
 	//Check for command
-	if (request.text && parseInt(request.user_id) !== bot && request.text.substring(0, command.length) === command) {
+	if (request.text && parseInt(request.user_id) !== bot) {
 		//Check lock
 		manageLock(request);
 		if (locked) return;
