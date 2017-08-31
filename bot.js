@@ -310,9 +310,9 @@ function addMember(message) {
 		"user_id": "1234"
 	};
 	
-	// body = {
-		// "members" : [newMember];
-	// };
+	body = {
+		"members" : [newMember];
+	};
 
 	// botReq = HTTPS.request(options, function(res) {
 			// if(res.statusCode == 202) {
