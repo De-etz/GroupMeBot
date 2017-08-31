@@ -301,7 +301,7 @@ function addMember(message) {
 	
 	options = {
 		hostname: 'api.groupme.com',
-		path: '/v3/groups/:31379218/members/add',
+		path: '/v3/groups/31379218/members/add',
 		method: 'POST'
 	};
 	
