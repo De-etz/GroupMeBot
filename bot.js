@@ -311,7 +311,7 @@ function addMember(message) {
 	};
 	
 	body = {
-		"members" : [newMember];
+		// "members" : [newMember];
 	};
 
 	// botReq = HTTPS.request(options, function(res) {
