@@ -1,12 +1,15 @@
+var plug = './plugins/';
+
 var HTTPS = require('https');
 var HTTP = require('http');
 var cool = require('cool-ascii-faces');
+var slapper = require(plug+'slap.js');
 
 var botID = process.env.BOT_ID;
 var apiKey = process.env.API_KEY;
 var locked = false;
 
-var intro = 1;
+var intro = 0;
 
 // User IDs
 var bot = 		395976;
@@ -73,6 +76,8 @@ var zachd =		26215931;
 
 var ids = [bot, adityas, alainas, alexa, alexb, alexisk, alicem, alicet, annalig, anorai, blairc, brycew, camdens, catheriner, chasec, claireg, dzidupeek, elizabethh, emmaw, evanm, gabbic, harir, hunterc, ianc, isabelj, jackr, jareda, jbc, jenniez, joeyt, joshw, juliag, juliap, justinp, karenj, kaneb, kelleyl, kennethk, kenp, laurenl, laurens, lornaf, madisonk, makennar, michaelc, nicks, nickw, noahh, oliviaw, palinah, pranavr, rahulc, rohithp, shraddhap, simmid, simons, sophiet, spencerg, timk, toric, zachd];
 
+var names = ['DeetzBot', 'Aditya', 'Alaina', 'Alex', 'Alex', 'Alexis', 'Alice', 'Alice', 'Anna Li', 'Anora', 'Blair', 'Bryce', 'Camden', 'Catherine', 'Chase', 'Claire', 'Dzidupe', 'Elizabeth', 'Emma', 'Evan', 'Gabbi', 'Hari', 'Hunter', 'Ian', 'Isabel', 'Jack', 'Jared', 'JB', 'Jennie', 'Joey', 'Josh', 'Julia', 'Julia', 'Justin', 'Karen', 'Kane', 'Kelley', 'Kenneth', 'Ken', 'Lauren', 'Lauren', 'Lorna', 'Madison', 'Makenna', 'Michael', 'Nick', 'Nick', 'Noah', 'Olivia', 'Palina', 'Pranav', 'Rahul', 'Rohith', 'Shraddha', 'Simmi', 'Simon', 'Sophie', 'Spencer', 'Tim', 'Tori', 'Zach']
+
 //Commands
 var command = '/',
 	lock = '/lock',
@@ -81,8 +86,9 @@ var command = '/',
 	help = '/help',
 	info = '/displayinfo',
 	gif = '/gif',
-	summon = '/summon';
-var commands = [command, lock, unlock, face, help, info, gif, summon];
+	summon = '/summon',
+	slap = '/slap';
+var commands = [command, lock, unlock, face, help, info, gif, summon, slap];
 
 function listCommands(request) {
 	var cList = '';
@@ -100,8 +106,10 @@ function listCommands(request) {
 		for (i = 1; i < commands.length; i++) {
 			if (commands[i] === lock || commands[i] === unlock || commands[i] === summon) {
 				
-			} else if (commands[i] === gif) {
-				cList += commands[i] + " [search query] (Use responsibly...)\r\n";
+			} else if (commands[i] === gif || commands[i] === stock) {
+				cList += commands[i] + " [search query]\r\n";
+			} else if (commands[i] === slap) {
+				cList += commands[i] + " [victim]\r\n";
 			} else {
 				cList += commands[i] + "\r\n";
 			}
@@ -130,13 +138,21 @@ function processCommand(request) {
 	} else if (is(request, info)) {
 		displayInfo(request);
 	} else if (is(request, gif)) {
-		if (parseInt(request.user_id) == jbc) {
-			postMessage('No.');
+		if (request.text.length > slap.length+1) {
+			searchGiphy(request.text.substring(gif.length + 1), apiKey);
 		} else {
-			searchGiphy(request.text.substring(gif.length + 1));
+			postMessage('Specify a search query (See /help for syntax)');
 		}
 	} else if (is(request, unlock)) {
 		//Silent ignore
+	} else if (is(request, slap)) {
+		if (request.text.length > slap.length+1) {
+			var attacker = names[ids.indexOf(parseInt(request.user_id))];
+			var victim = request.text.substring(slap.length + 1);
+			postMessage(slapper.generateSlap(attacker, victim));
+		} else {
+			postMessage('Specify a victim (See /help for syntax)');
+		}
 	} else if (is(request, summon)) {
 		if (parseInt(request.user_id) == adityas) {
 			summonAll();
@@ -161,10 +177,15 @@ function respond() {
 			var rand = Math.floor((Math.random() * 100) + 1);
 			postMessage(rand);
 			if (rand <= 33) {postMessage("Fuck off Pranav.");}
+		} else {
+			
+			try {
+				//Run command
+				processCommand(request);
+			} catch (err) {
+				reportError(err);
+			}
 		}
-		
-		//Run command
-		processCommand(request);
 	}
 
 }
@@ -175,10 +196,6 @@ function displayInfo(request) {
 
 function reportError(err) {
 	postMessage('Error: ' + err.message);
-}
-
-function encodeQuery(query) {
-	return query.replace(/\s/g, '+');;
 }
 
 function manageLock(key) {
@@ -205,33 +222,6 @@ function manageLock(key) {
 		}
 	}
 	
-}
-
-function searchGiphy(giphyToSearch) {
-	var options = {
-		host: 'api.giphy.com',
-		path: '/v1/gifs/search?q=' + encodeQuery(giphyToSearch) + '&api_key=' + apiKey
-	};
-
-	var callback = function(response) {
-		var str = '';
-
-		response.on('data', function(chunck){
-			str += chunck;
-		});
-
-		response.on('end', function() {
-			if (!(str && JSON.parse(str).data[0])) {
-				postMessage('Couldn\'t find a gif 💩');
-			} else {
-				var id = JSON.parse(str).data[0].id;
-				var giphyURL = 'http://i.giphy.com/' + id + '.gif';
-				postMessage(giphyURL);
-			}
-		});
-	};
-
-	HTTP.request(options, callback).end();
 }
 
 function summonAll() {
@@ -301,6 +291,34 @@ function summonUsers(users) {
 	botReq.end(JSON.stringify(body));
 }
 
+function searchGiphy(giphyToSearch) {
+	
+	var options = {
+		host: 'api.giphy.com',
+		path: '/v1/gifs/search?q=' + giphyToSearch.replace(/\s/g, '+') + '&api_key=' + apiKey
+	};
+	
+	var callback = function(response) {
+		var str = '';
+		
+		response.on('data', function(chunck){
+			str += chunck;
+		});
+		
+		response.on('end', function() {
+			if (!(str && JSON.parse(str).data[0])) {
+				postMessage('Couldn\'t find a gif ðŸ’©');
+			} else {
+				var id = JSON.parse(str).data[0].id;
+				var giphyURL = 'http://i.giphy.com/' + id + '.gif';
+				postMessage(giphyURL);
+			}
+		});
+	};
+	
+	HTTPS.request(options, callback).end();
+	
+}
 
 function postMessage(message) {
 	var botResponse, options, body, botReq;
@@ -337,14 +355,9 @@ function postMessage(message) {
 	botReq.end(JSON.stringify(body));
 }
 
-try {
-	
-	if (intro === 0) {
-		postMessage('Deetz updated succesfully.');
-		intro = 1;
-	}
-	
-	exports.respond = respond;
-} catch (err) {
-	reportError('bot.js');
+if (intro === 0) {
+	postMessage('Deetz updated succesfully.');
+	intro = 1;
 }
+
+exports.respond = respond;
