@@ -304,13 +304,15 @@ function addMember(message) {
 		path: '/v3/groups/:31379218/members/add',
 		method: 'POST'
 	};
-
-	body = {
-		"members" : [{
-			"nickname": "Drizzy",
-			"user_id": "1234"
-		}];
+	
+	var newMember = {
+		"nickname": "Drizzy",
+		"user_id": "1234"
 	};
+	
+	// body = {
+		// "members" : [newMember];
+	// };
 
 	// botReq = HTTPS.request(options, function(res) {
 			// if(res.statusCode == 202) {
