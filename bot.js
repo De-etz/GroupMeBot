@@ -184,7 +184,8 @@ function respond() {
 			
 			try {
 				//Run command
-				processCommand(request);
+				displayInfo(request);
+				// processCommand(request);
 			} catch (err) {
 				reportError(err);
 			}
