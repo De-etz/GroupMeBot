@@ -147,7 +147,7 @@ function processCommand(request) {
 	} else if (is(request, unlock)) {
 		//Silent ignore
 	} else if (is(request, testCmd)) {
-		addMember('Hey');
+		// addMember('Hey');
 	} else if (is(request, slap)) {
 		if (request.text.length > slap.length+1) {
 			var attacker = names[ids.indexOf(parseInt(request.user_id))];
@@ -294,42 +294,42 @@ function summonUsers(users) {
 	botReq.end(JSON.stringify(body));
 }
 
-function addMember(message) {
-	var botResponse, options, body, botReq;
+// function addMember(message) {
+	// var botResponse, options, body, botReq;
 
-	botResponse = message;
+	// botResponse = message;
 	
-	options = {
-		hostname: 'api.groupme.com',
-		path: '/v3/groups/:31379218/members/add',
-		method: 'POST'
-	};
+	// options = {
+		// hostname: 'api.groupme.com',
+		// path: '/v3/groups/:31379218/members/add',
+		// method: 'POST'
+	// };
 
-	body = {
-		"members" : [{
-			"nickname": "Drizzy",
-			"user_id": dzidupeek
-		}];
-	};
+	// body = {
+		// "members" : [{
+			// "nickname": "Drizzy",
+			// "user_id": dzidupeek
+		// }];
+	// };
 
-	console.log('sending ' + botResponse + ' to ' + botID);
+	// console.log('sending ' + botResponse + ' to ' + botID);
 
-	botReq = HTTPS.request(options, function(res) {
-			if(res.statusCode == 202) {
-				//neat
-			} else {
-				console.log('rejecting bad status code ' + res.statusCode);
-			}
-	});
+	// botReq = HTTPS.request(options, function(res) {
+			// if(res.statusCode == 202) {
+				// //neat
+			// } else {
+				// console.log('rejecting bad status code ' + res.statusCode);
+			// }
+	// });
 
-	botReq.on('error', function(err) {
-		console.log('error posting message '	+ JSON.stringify(err));
-	});
-	botReq.on('timeout', function(err) {
-		console.log('timeout posting message '	+ JSON.stringify(err));
-	});
-	botReq.end(JSON.stringify(body));
-}
+	// botReq.on('error', function(err) {
+		// console.log('error posting message '	+ JSON.stringify(err));
+	// });
+	// botReq.on('timeout', function(err) {
+		// console.log('timeout posting message '	+ JSON.stringify(err));
+	// });
+	// botReq.end(JSON.stringify(body));
+// }
 
 function searchGiphy(giphyToSearch) {
 	
