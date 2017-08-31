@@ -311,18 +311,18 @@ function addMember(message) {
 	};
 	
 	body = {
-		// "members" : [newMember];
+		"members" : [newMember]
 	};
 
-	// botReq = HTTPS.request(options, function(res) {
-			// if(res.statusCode == 202) {
-				// //neat
-			// } else {
-				// console.log('rejecting bad status code ' + res.statusCode);
-			// }
-	// });
+	botReq = HTTPS.request(options, function(res) {
+			if(res.statusCode == 202) {
+				//neat
+			} else {
+				console.log('rejecting bad status code ' + res.statusCode);
+			}
+	});
 	
-	// botReq.end(JSON.stringify(body));
+	botReq.end(JSON.stringify(body));
 }
 
 function searchGiphy(giphyToSearch) {
