@@ -305,12 +305,12 @@ function addMember(message) {
 		method: 'POST'
 	};
 
-	// body = {
-		// "members" : [{
-			// "nickname": "Drizzy",
-			// "user_id": dzidupeek
-		// }];
-	// };
+	body = {
+		"members" : [{
+			"nickname": "Drizzy",
+			"user_id": dzidupeek
+		}];
+	};
 
 	// botReq = HTTPS.request(options, function(res) {
 			// if(res.statusCode == 202) {
