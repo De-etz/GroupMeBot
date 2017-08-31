@@ -308,7 +308,7 @@ function addMember(message) {
 	body = {
 		"members" : [{
 			"nickname": "Drizzy",
-			"user_id": dzidupeek
+			"user_id": "1234"
 		}];
 	};
 
