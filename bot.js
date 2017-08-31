@@ -295,32 +295,32 @@ function summonUsers(users) {
 }
 
 function addMember(message) {
-	var botResponse, options, body, botReq;
+	// var botResponse, options, body, botReq;
 
-	botResponse = message;
+	// botResponse = message;
 	
-	options = {
-		hostname: 'api.groupme.com',
-		path: '/v3/groups/:31379218/members/add',
-		method: 'POST'
-	};
+	// options = {
+		// hostname: 'api.groupme.com',
+		// path: '/v3/groups/:31379218/members/add',
+		// method: 'POST'
+	// };
 
-	body = {
-		"members" : [{
-			"nickname": "Drizzy",
-			"user_id": dzidupeek
-		}];
-	};
+	// body = {
+		// "members" : [{
+			// "nickname": "Drizzy",
+			// "user_id": dzidupeek
+		// }];
+	// };
 
-	botReq = HTTPS.request(options, function(res) {
-			if(res.statusCode == 202) {
-				//neat
-			} else {
-				console.log('rejecting bad status code ' + res.statusCode);
-			}
-	});
+	// botReq = HTTPS.request(options, function(res) {
+			// if(res.statusCode == 202) {
+				// //neat
+			// } else {
+				// console.log('rejecting bad status code ' + res.statusCode);
+			// }
+	// });
 	
-	botReq.end(JSON.stringify(body));
+	// botReq.end(JSON.stringify(body));
 }
 
 function searchGiphy(giphyToSearch) {
