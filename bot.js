@@ -184,6 +184,7 @@ function respond() {
 			
 			try {
 				//Run command
+				postMessage('Ok');
 				displayInfo(request);
 				// processCommand(request);
 			} catch (err) {
