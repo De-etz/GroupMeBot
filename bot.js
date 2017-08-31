@@ -89,7 +89,7 @@ var command = '/',
 	summon = '/summon',
 	slap = '/slap',
 	testCmd = '/test';
-var commands = [command, lock, unlock, face, help, info, gif, summon, slap, stock];
+var commands = [command, lock, unlock, face, help, info, gif, summon, slap, testCmd];
 
 function listCommands(request) {
 	var cList = '';
@@ -294,7 +294,7 @@ function summonUsers(users) {
 	botReq.end(JSON.stringify(body));
 }
 
-// function addMember(message) {
+function addMember(message) {
 	// var botResponse, options, body, botReq;
 
 	// botResponse = message;
@@ -329,7 +329,7 @@ function summonUsers(users) {
 		// console.log('timeout posting message '	+ JSON.stringify(err));
 	// });
 	// botReq.end(JSON.stringify(body));
-// }
+}
 
 function searchGiphy(giphyToSearch) {
 	
