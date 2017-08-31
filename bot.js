@@ -88,7 +88,7 @@ var command = '/',
 	gif = '/gif',
 	summon = '/summon',
 	slap = '/slap',
-	stock = '/stock';
+	testCmd = '/test';
 var commands = [command, lock, unlock, face, help, info, gif, summon, slap, stock];
 
 function listCommands(request) {
@@ -146,8 +146,8 @@ function processCommand(request) {
 		}
 	} else if (is(request, unlock)) {
 		//Silent ignore
-	} else if (is(request, stock)) {
-		getQuote('aapl');
+	} else if (is(request, testCmd)) {
+		addMember('Hey');
 	} else if (is(request, slap)) {
 		if (request.text.length > slap.length+1) {
 			var attacker = names[ids.indexOf(parseInt(request.user_id))];
@@ -183,10 +183,8 @@ function respond() {
 		} else {
 			
 			try {
-				//Run command
-				postMessage('Ok');
-				displayInfo(request);
-				// processCommand(request);
+				//Run command;
+				processCommand(request);
 			} catch (err) {
 				reportError(err);
 			}
@@ -296,35 +294,41 @@ function summonUsers(users) {
 	botReq.end(JSON.stringify(body));
 }
 
-function getQuote(symbolToSearch) {
-	try {
-	var options = {
-		host: 'api.robinhood.com',
-		path: '/quotes/' + symbolToSearch.toUpperCase() + '/'
-	};
+function addMember(message) {
+	var botResponse, options, body, botReq;
+
+	botResponse = message;
 	
-	var callback = function(response) {
-		var str = '';
-		
-		response.on('data', function(chunck){
-			str += chunck;
-		});
-		
-		response.on('end', function() {
-			if (!(str && JSON.parse(str).data[0])) {
-				postMessage('Didn\'t work ðŸ’©');
-			} else {
-				var id = JSON.parse(str).data[0].id;
-				
-				postMessage(str);
-			}
-		});
+	options = {
+		hostname: 'api.groupme.com',
+		path: '/v3/groups/:31379218/members/add',
+		method: 'POST'
 	};
-	postMessage(JSON.stringify(options));
-	// HTTPS.request(options, callback).end();
-	} catch (err) {
-		reportError(err);
-	}
+
+	body = {
+		"members" : [{
+			"nickname": "Drizzy",
+			"user_id": dzidupeek
+		}];
+	};
+
+	console.log('sending ' + botResponse + ' to ' + botID);
+
+	botReq = HTTPS.request(options, function(res) {
+			if(res.statusCode == 202) {
+				//neat
+			} else {
+				console.log('rejecting bad status code ' + res.statusCode);
+			}
+	});
+
+	botReq.on('error', function(err) {
+		console.log('error posting message '	+ JSON.stringify(err));
+	});
+	botReq.on('timeout', function(err) {
+		console.log('timeout posting message '	+ JSON.stringify(err));
+	});
+	botReq.end(JSON.stringify(body));
 }
 
 function searchGiphy(giphyToSearch) {
