@@ -9,7 +9,7 @@ var botID = process.env.BOT_ID;
 var apiKey = process.env.API_KEY;
 var locked = false;
 
-var intro = 0;
+var intro = 1;
 
 // User IDs
 var bot = 		395976;

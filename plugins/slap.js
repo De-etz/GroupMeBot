@@ -17,12 +17,12 @@ module.exports.generateSlap = function generateSlap(attacker, victim) {
 		'$v burned to death.',
 		'$v walked into a fire whilst fighting $a.',
 		'$v tried to swim in lava.',
+		'$v was guillotined to death. Twenty-four.'
 		'$v was struck by lightning, twice.',
 		'$v was slain by $a.',
 		'$a finished off $v.',
 		'$v starved to death.',
 		'$v suffocated in a wall.',
-		'$v fell out of the world.',
 		'$v was knocked into the void by $a.',
 		'$v was pummeled by $a.',
 		'$v was fragged by $a.',
@@ -60,7 +60,6 @@ module.exports.generateSlap = function generateSlap(attacker, victim) {
 		'$v died and reincarnated as a goat.',
 		'$a threw $v off a building.',
 		'$v is sleeping with the fishes.',
-		'$v got a premature burial.',
 		'$a replaced all of $v\'s music with Nickelback.',
 		'$a spammed $v\'s email.',
 		'$a made $v a knuckle sandwich.',
@@ -69,13 +68,14 @@ module.exports.generateSlap = function generateSlap(attacker, victim) {
 		'$a put $v in check-mate.',
 		'$a RSA-encrypted $v and deleted the private key.',
 		'$a put $v in the friendzone.',
-		'$a slaps $v with a DMCA takedown request!',
+		'$a slapped $v with a DMCA takedown request!',
 		'$v became a corpse blanket for $a.',
 		'Death is when the monsters get you. Death comes for $v.',
 		'Cowards die many times before their death. $v never tasted death but once.',
 		'$v.exe has stopped responding.',
 		'$v was inverted by $a',
-		'$v was caught by Mr. Greenhill'
+		'$v was caught by Mr. Greenhill',
+		'$v was the victim of North Korean missile strike"'
 		];
 	
 	var rand = Math.floor((Math.random() * phrases.length));
