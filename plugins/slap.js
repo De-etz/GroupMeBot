@@ -17,7 +17,7 @@ module.exports.generateSlap = function generateSlap(attacker, victim) {
 		'$v burned to death.',
 		'$v walked into a fire whilst fighting $a.',
 		'$v tried to swim in lava.',
-		'$v was guillotined to death. Twenty-four.'
+		'$v was guillotined to death. Twenty-four.',
 		'$v was struck by lightning, twice.',
 		'$v was slain by $a.',
 		'$a finished off $v.',
