@@ -106,7 +106,7 @@ function listCommands(request) {
 		for (i = 1; i < commands.length; i++) {
 			if (commands[i] === lock || commands[i] === unlock || commands[i] === summon) {
 				
-			} else if (commands[i] === gif || commands[i] === stock) {
+			} else if (commands[i] === gif) {
 				cList += commands[i] + " [search query]\r\n";
 			} else if (commands[i] === slap) {
 				cList += commands[i] + " [victim]\r\n";
