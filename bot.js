@@ -13,11 +13,13 @@ var intro = 0;
 
 // User IDs
 var bot = 		395976;
+var abbyw = 	28197251;
 var adityas =	28705961;
 var alainas =	26324111;
 var alexa =		37554485;
 var alexb =		28551558;
 var alexisk =	43694487;
+var alfonsot = 	48859645;
 var alicem =	7668435;
 var alicet =	43030267;
 var annalig =	34197001;
@@ -39,6 +41,7 @@ var ianc =		26281232;
 var isabelj =	24401015;
 var jackr =		26215932;
 var jareda =	26233424;
+var jasperot = 	25199188;
 var jbc =		28181092;
 var jenniez =	34278340;
 var joeyt =		29263943;
@@ -53,6 +56,7 @@ var kennethk =	40324748;
 var kenp =		29454584;
 var laurenl =	7668434;
 var laurens =	33335699;
+var liami =		38747004;
 var lornaf =	32860874;
 var madisonk =	5238905;
 var makennar =	37631615;
@@ -62,21 +66,23 @@ var nickw =		38803444;
 var noahh =		24037063;
 var oliviaw =	8770582;
 var palinah =	31652199;
+var paulinad =	49498482;
 var pranavr =	25448183;
 var rahulc =	35866129;
 var rohithp =	43484221;
 var shraddhap =	30155431;
 var simmid =	9603427;
 var simons =	27319066;
+var sollys =	38743948;
 var sophiet =	32633725;
 var spencerg =	48026577;
 var timk =		47476114;
 var toric =		28690781;
 var zachd =		26215931;
 
-var ids = [bot, adityas, alainas, alexa, alexb, alexisk, alicem, alicet, annalig, anorai, blairc, brycew, camdens, catheriner, chasec, claireg, dzidupeek, elizabethh, emmaw, evanm, gabbic, harir, hunterc, ianc, isabelj, jackr, jareda, jbc, jenniez, joeyt, joshw, juliag, juliap, justinp, karenj, kaneb, kelleyl, kennethk, kenp, laurenl, laurens, lornaf, madisonk, makennar, michaelc, nicks, nickw, noahh, oliviaw, palinah, pranavr, rahulc, rohithp, shraddhap, simmid, simons, sophiet, spencerg, timk, toric, zachd];
+var ids = [bot, adityas, alainas, alexa, alexb, alexisk, alicem, alicet, annalig, anorai, blairc, brycew, camdens, catheriner, chasec, claireg, dzidupeek, elizabethh, emmaw, evanm, gabbic, harir, hunterc, ianc, isabelj, jackr, jareda, jasperot, jbc, jenniez, joeyt, joshw, juliag, juliap, justinp, karenj, kaneb, kelleyl, kennethk, kenp, laurenl, laurens, lornaf, madisonk, makennar, michaelc, nicks, nickw, noahh, oliviaw, palinah, pranavr, rahulc, rohithp, shraddhap, simmid, simons, sophiet, spencerg, timk, toric, zachd];
 
-var names = ['DeetzBot', 'Aditya', 'Alaina', 'Alex', 'Alex', 'Alexis', 'Alice', 'Alice', 'Anna Li', 'Anora', 'Blair', 'Bryce', 'Camden', 'Catherine', 'Chase', 'Claire', 'Dzidupe', 'Elizabeth', 'Emma', 'Evan', 'Gabbi', 'Hari', 'Hunter', 'Ian', 'Isabel', 'Jack', 'Jared', 'JB', 'Jennie', 'Joey', 'Josh', 'Julia', 'Julia', 'Justin', 'Karen', 'Kane', 'Kelley', 'Kenneth', 'Ken', 'Lauren', 'Lauren', 'Lorna', 'Madison', 'Makenna', 'Michael', 'Nick', 'Nick', 'Noah', 'Olivia', 'Palina', 'Pranav', 'Rahul', 'Rohith', 'Shraddha', 'Simmi', 'Simon', 'Sophie', 'Spencer', 'Tim', 'Tori', 'Zach']
+var names = ['DeetzBot', 'Abby', 'Aditya', 'Alaina', 'Alex', 'Alex', 'Alexis', 'Alfonso', 'Alice', 'Alice', 'Anna Li', 'Anora', 'Blair', 'Bryce', 'Camden', 'Catherine', 'Chase', 'Claire', 'Dzidupe', 'Elizabeth', 'Emma', 'Evan', 'Gabbi', 'Hari', 'Hunter', 'Ian', 'Isabel', 'Jack', 'Jared', 'Jasper', 'JB', 'Jennie', 'Joey', 'Josh', 'Julia', 'Julia', 'Justin', 'Karen', 'Kane', 'Kelley', 'Kenneth', 'Ken', 'Lauren', 'Lauren', 'Liam', 'Lorna', 'Madison', 'Makenna', 'Michael', 'Nick', 'Nick', 'Noah', 'Olivia', 'Palina', 'Paulina', 'Pranav', 'Rahul', 'Rohith', 'Shraddha', 'Simmi', 'Simon', 'Solly', 'Sophie', 'Spencer', 'Tim', 'Tori', 'Zach']
 
 //Commands
 var command = '/',
@@ -87,9 +93,8 @@ var command = '/',
 	info = '/displayinfo',
 	gif = '/gif',
 	summon = '/summon',
-	slap = '/slap',
-	testCmd = '/test';
-var commands = [command, lock, unlock, face, help, info, gif, summon, slap, testCmd];
+	slap = '/slap';
+var commands = [command, lock, unlock, face, help, info, gif, summon, slap];
 
 function listCommands(request) {
 	var cList = '';
@@ -146,8 +151,6 @@ function processCommand(request) {
 		}
 	} else if (is(request, unlock)) {
 		//Silent ignore
-	} else if (is(request, testCmd)) {
-		// addMember('Hey');
 	} else if (is(request, slap)) {
 		if (request.text.length > slap.length+1) {
 			var attacker = names[ids.indexOf(parseInt(request.user_id))];
@@ -183,7 +186,7 @@ function respond() {
 		} else {
 			
 			try {
-				//Run command;
+				//Run command
 				processCommand(request);
 			} catch (err) {
 				reportError(err);
@@ -294,37 +297,6 @@ function summonUsers(users) {
 	botReq.end(JSON.stringify(body));
 }
 
-function addMember(message) {
-	var botResponse, options, body, botReq;
-
-	botResponse = message;
-	
-	options = {
-		hostname: 'api.groupme.com',
-		path: '/v3/groups/:group_id/members/add',
-		method: 'POST'
-	};
-	
-	var newMember = {
-		"nickname": "Drizzy",
-		"user_id": "1234"
-	};
-	
-	body = {
-		"members" : [newMember]
-	};
-
-	botReq = HTTPS.request(options, function(res) {
-			if(res.statusCode == 202) {
-				//neat
-			} else {
-				console.log('rejecting bad status code ' + res.statusCode);
-			}
-	});
-	
-	botReq.end(JSON.stringify(body));
-}
-
 function searchGiphy(giphyToSearch) {
 	
 	var options = {
@@ -341,7 +313,7 @@ function searchGiphy(giphyToSearch) {
 		
 		response.on('end', function() {
 			if (!(str && JSON.parse(str).data[0])) {
-				postMessage('Couldn\'t find a gif ðŸ’©');
+				postMessage('Couldn\'t find a gif 💩');
 			} else {
 				var id = JSON.parse(str).data[0].id;
 				var giphyURL = 'http://i.giphy.com/' + id + '.gif';
