@@ -9,15 +9,17 @@ var botID = process.env.BOT_ID;
 var apiKey = process.env.API_KEY;
 var locked = false;
 
-var intro = 0;
+var intro = 1;
 
 // User IDs
 var bot = 		395976;
+var abbyw = 	28197251;
 var adityas =	28705961;
 var alainas =	26324111;
 var alexa =		37554485;
 var alexb =		28551558;
 var alexisk =	43694487;
+var alfonsot = 	48859645;
 var alicem =	7668435;
 var alicet =	43030267;
 var annalig =	34197001;
@@ -54,6 +56,7 @@ var kennethk =	40324748;
 var kenp =		29454584;
 var laurenl =	7668434;
 var laurens =	33335699;
+var liami =		38747004;
 var lornaf =	32860874;
 var madisonk =	5238905;
 var makennar =	37631615;
@@ -63,12 +66,14 @@ var nickw =		38803444;
 var noahh =		24037063;
 var oliviaw =	8770582;
 var palinah =	31652199;
+var paulinad =	49498482;
 var pranavr =	25448183;
 var rahulc =	35866129;
 var rohithp =	43484221;
 var shraddhap =	30155431;
 var simmid =	9603427;
 var simons =	27319066;
+var sollys =	38743948;
 var sophiet =	32633725;
 var spencerg =	48026577;
 var timk =		47476114;
@@ -77,7 +82,7 @@ var zachd =		26215931;
 
 var ids = [bot, adityas, alainas, alexa, alexb, alexisk, alicem, alicet, annalig, anorai, blairc, brycew, camdens, catheriner, chasec, claireg, dzidupeek, elizabethh, emmaw, evanm, gabbic, harir, hunterc, ianc, isabelj, jackr, jareda, jasperot, jbc, jenniez, joeyt, joshw, juliag, juliap, justinp, karenj, kaneb, kelleyl, kennethk, kenp, laurenl, laurens, lornaf, madisonk, makennar, michaelc, nicks, nickw, noahh, oliviaw, palinah, pranavr, rahulc, rohithp, shraddhap, simmid, simons, sophiet, spencerg, timk, toric, zachd];
 
-var names = ['DeetzBot', 'Aditya', 'Alaina', 'Alex', 'Alex', 'Alexis', 'Alice', 'Alice', 'Anna Li', 'Anora', 'Blair', 'Bryce', 'Camden', 'Catherine', 'Chase', 'Claire', 'Dzidupe', 'Elizabeth', 'Emma', 'Evan', 'Gabbi', 'Hari', 'Hunter', 'Ian', 'Isabel', 'Jack', 'Jared', 'Jasper', 'JB', 'Jennie', 'Joey', 'Josh', 'Julia', 'Julia', 'Justin', 'Karen', 'Kane', 'Kelley', 'Kenneth', 'Ken', 'Lauren', 'Lauren', 'Lorna', 'Madison', 'Makenna', 'Michael', 'Nick', 'Nick', 'Noah', 'Olivia', 'Palina', 'Pranav', 'Rahul', 'Rohith', 'Shraddha', 'Simmi', 'Simon', 'Sophie', 'Spencer', 'Tim', 'Tori', 'Zach']
+var names = ['DeetzBot', 'Abby', 'Aditya', 'Alaina', 'Alex', 'Alex', 'Alexis', 'Alfonso', 'Alice', 'Alice', 'Anna Li', 'Anora', 'Blair', 'Bryce', 'Camden', 'Catherine', 'Chase', 'Claire', 'Dzidupe', 'Elizabeth', 'Emma', 'Evan', 'Gabbi', 'Hari', 'Hunter', 'Ian', 'Isabel', 'Jack', 'Jared', 'Jasper', 'JB', 'Jennie', 'Joey', 'Josh', 'Julia', 'Julia', 'Justin', 'Karen', 'Kane', 'Kelley', 'Kenneth', 'Ken', 'Lauren', 'Lauren', 'Liam', 'Lorna', 'Madison', 'Makenna', 'Michael', 'Nick', 'Nick', 'Noah', 'Olivia', 'Palina', 'Paulina', 'Pranav', 'Rahul', 'Rohith', 'Shraddha', 'Simmi', 'Simon', 'Solly', 'Sophie', 'Spencer', 'Tim', 'Tori', 'Zach']
 
 //Commands
 var command = '/',
