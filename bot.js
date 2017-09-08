@@ -9,7 +9,7 @@ var botID = process.env.BOT_ID;
 var apiKey = process.env.API_KEY;
 var locked = false;
 
-var intro = 1;
+var intro = 0;
 
 // User IDs
 var bot = 		395976;
@@ -39,6 +39,7 @@ var ianc =		26281232;
 var isabelj =	24401015;
 var jackr =		26215932;
 var jareda =	26233424;
+var jasperot = 	25199188;
 var jbc =		28181092;
 var jenniez =	34278340;
 var joeyt =		29263943;
@@ -74,9 +75,9 @@ var timk =		47476114;
 var toric =		28690781;
 var zachd =		26215931;
 
-var ids = [bot, adityas, alainas, alexa, alexb, alexisk, alicem, alicet, annalig, anorai, blairc, brycew, camdens, catheriner, chasec, claireg, dzidupeek, elizabethh, emmaw, evanm, gabbic, harir, hunterc, ianc, isabelj, jackr, jareda, jbc, jenniez, joeyt, joshw, juliag, juliap, justinp, karenj, kaneb, kelleyl, kennethk, kenp, laurenl, laurens, lornaf, madisonk, makennar, michaelc, nicks, nickw, noahh, oliviaw, palinah, pranavr, rahulc, rohithp, shraddhap, simmid, simons, sophiet, spencerg, timk, toric, zachd];
+var ids = [bot, adityas, alainas, alexa, alexb, alexisk, alicem, alicet, annalig, anorai, blairc, brycew, camdens, catheriner, chasec, claireg, dzidupeek, elizabethh, emmaw, evanm, gabbic, harir, hunterc, ianc, isabelj, jackr, jareda, jasperot, jbc, jenniez, joeyt, joshw, juliag, juliap, justinp, karenj, kaneb, kelleyl, kennethk, kenp, laurenl, laurens, lornaf, madisonk, makennar, michaelc, nicks, nickw, noahh, oliviaw, palinah, pranavr, rahulc, rohithp, shraddhap, simmid, simons, sophiet, spencerg, timk, toric, zachd];
 
-var names = ['DeetzBot', 'Aditya', 'Alaina', 'Alex', 'Alex', 'Alexis', 'Alice', 'Alice', 'Anna Li', 'Anora', 'Blair', 'Bryce', 'Camden', 'Catherine', 'Chase', 'Claire', 'Dzidupe', 'Elizabeth', 'Emma', 'Evan', 'Gabbi', 'Hari', 'Hunter', 'Ian', 'Isabel', 'Jack', 'Jared', 'JB', 'Jennie', 'Joey', 'Josh', 'Julia', 'Julia', 'Justin', 'Karen', 'Kane', 'Kelley', 'Kenneth', 'Ken', 'Lauren', 'Lauren', 'Lorna', 'Madison', 'Makenna', 'Michael', 'Nick', 'Nick', 'Noah', 'Olivia', 'Palina', 'Pranav', 'Rahul', 'Rohith', 'Shraddha', 'Simmi', 'Simon', 'Sophie', 'Spencer', 'Tim', 'Tori', 'Zach']
+var names = ['DeetzBot', 'Aditya', 'Alaina', 'Alex', 'Alex', 'Alexis', 'Alice', 'Alice', 'Anna Li', 'Anora', 'Blair', 'Bryce', 'Camden', 'Catherine', 'Chase', 'Claire', 'Dzidupe', 'Elizabeth', 'Emma', 'Evan', 'Gabbi', 'Hari', 'Hunter', 'Ian', 'Isabel', 'Jack', 'Jared', 'Jasper', 'JB', 'Jennie', 'Joey', 'Josh', 'Julia', 'Julia', 'Justin', 'Karen', 'Kane', 'Kelley', 'Kenneth', 'Ken', 'Lauren', 'Lauren', 'Lorna', 'Madison', 'Makenna', 'Michael', 'Nick', 'Nick', 'Noah', 'Olivia', 'Palina', 'Pranav', 'Rahul', 'Rohith', 'Shraddha', 'Simmi', 'Simon', 'Sophie', 'Spencer', 'Tim', 'Tori', 'Zach']
 
 //Commands
 var command = '/',
@@ -307,7 +308,7 @@ function searchGiphy(giphyToSearch) {
 		
 		response.on('end', function() {
 			if (!(str && JSON.parse(str).data[0])) {
-				postMessage('Couldn\'t find a gif ðŸ’©');
+				postMessage('Couldn\'t find a gif 💩');
 			} else {
 				var id = JSON.parse(str).data[0].id;
 				var giphyURL = 'http://i.giphy.com/' + id + '.gif';
