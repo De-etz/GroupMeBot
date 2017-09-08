@@ -80,7 +80,7 @@ var timk =		47476114;
 var toric =		28690781;
 var zachd =		26215931;
 
-var ids = [bot, adityas, alainas, alexa, alexb, alexisk, alicem, alicet, annalig, anorai, blairc, brycew, camdens, catheriner, chasec, claireg, dzidupeek, elizabethh, emmaw, evanm, gabbic, harir, hunterc, ianc, isabelj, jackr, jareda, jasperot, jbc, jenniez, joeyt, joshw, juliag, juliap, justinp, karenj, kaneb, kelleyl, kennethk, kenp, laurenl, laurens, lornaf, madisonk, makennar, michaelc, nicks, nickw, noahh, oliviaw, palinah, pranavr, rahulc, rohithp, shraddhap, simmid, simons, sophiet, spencerg, timk, toric, zachd];
+var ids = [bot, adityas, alainas, alexa, alexb, alexisk, alfonsot, alicem, alicet, annalig, anorai, blairc, brycew, camdens, catheriner, chasec, claireg, dzidupeek, elizabethh, emmaw, evanm, gabbic, harir, hunterc, ianc, isabelj, jackr, jareda, jasperot, jbc, jenniez, joeyt, joshw, juliag, juliap, justinp, karenj, kaneb, kelleyl, kennethk, kenp, laurenl, laurens, lornaf, madisonk, makennar, michaelc, nicks, nickw, noahh, oliviaw, palinah, pranavr, rahulc, rohithp, shraddhap, simmid, simons, sophiet, spencerg, timk, toric, zachd];
 
 var names = ['DeetzBot', 'Abby', 'Aditya', 'Alaina', 'Alex', 'Alex', 'Alexis', 'Alfonso', 'Alice', 'Alice', 'Anna Li', 'Anora', 'Blair', 'Bryce', 'Camden', 'Catherine', 'Chase', 'Claire', 'Dzidupe', 'Elizabeth', 'Emma', 'Evan', 'Gabbi', 'Hari', 'Hunter', 'Ian', 'Isabel', 'Jack', 'Jared', 'Jasper', 'JB', 'Jennie', 'Joey', 'Josh', 'Julia', 'Julia', 'Justin', 'Karen', 'Kane', 'Kelley', 'Kenneth', 'Ken', 'Lauren', 'Lauren', 'Liam', 'Lorna', 'Madison', 'Makenna', 'Michael', 'Nick', 'Nick', 'Noah', 'Olivia', 'Palina', 'Paulina', 'Pranav', 'Rahul', 'Rohith', 'Shraddha', 'Simmi', 'Simon', 'Solly', 'Sophie', 'Spencer', 'Tim', 'Tori', 'Zach']
 
