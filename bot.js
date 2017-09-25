@@ -103,7 +103,11 @@ function listCommands(request) {
 		cList += 'List of all commands.\r\n';
 		for (i = 1; i < commands.length; i++) {
 			if (commands[i] === gif) {
-				cList += commands[i] + " (Use responsibly...)\r\n";
+				cList += commands[i] + " [search query]\r\n";
+			} else if (commands[i] === register) {
+				cList += commands[i] + " [@user]\r\n";
+			} else if (commands[i] === slap) {
+				cList += commands[i] + " [victim]\r\n";
 			} else {
 				cList += commands[i] + "\r\n";
 			}
@@ -113,6 +117,8 @@ function listCommands(request) {
 		for (i = 1; i < commands.length; i++) {
 			if (commands[i] === lock || commands[i] === unlock || commands[i] === summon || commands[i] === info) {
 				
+			} else if (commands[i] === register) {
+				cList += commands[i] + " [@user]\r\n";
 			} else if (commands[i] === gif) {
 				cList += commands[i] + " [search query]\r\n";
 			} else if (commands[i] === slap) {
@@ -154,7 +160,7 @@ function processCommand(request) {
 		//Silent ignore
 	} else if (is(request, register)) {
 		if (request.text.length > register.length+1) {
-			postMessage('Ids: ' + request.attachments.user_ids);
+			postMessage('Ids: ' + request.attachments);
 		} else {
 			postMessage('Use "@" and specify the user to register');
 		}
