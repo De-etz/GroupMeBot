@@ -159,8 +159,9 @@ function processCommand(request) {
 	} else if (is(request, unlock)) {
 		//Silent ignore
 	} else if (is(request, register)) {
+		
 		if (request.text.length > register.length+1) {
-			postMessage('Ids: ' + getID(request));
+			postMessage(getID(request));
 		} else {
 			postMessage('Use "@" and specify the user to register');
 		}
@@ -221,7 +222,12 @@ function getID(request) {
 	var messageData = JSON.stringify(request);
 	var initPos = messageData.indexOf('user_ids') + 12;
 	var endPos = messageData.indexOf('"', initPos+1);
-	return messageData.substring(initPos, endPos);
+	var pendingID = messageData.substring(initPos, endPos);
+	if (ids.indexOf(pendingID) == -1) {
+		return 'Id: ' + pendingID;
+	} else {
+		return 'User already registered';
+	}
 }
 
 function manageLock(key) {
