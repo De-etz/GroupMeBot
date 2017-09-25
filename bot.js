@@ -160,7 +160,7 @@ function processCommand(request) {
 		//Silent ignore
 	} else if (is(request, register)) {
 		if (request.text.length > register.length+1) {
-			postMessage('Ids: ' + request.attachments);
+			postMessage('Ids: ' + getID(request));
 		} else {
 			postMessage('Use "@" and specify the user to register');
 		}
@@ -215,6 +215,12 @@ function displayInfo(request) {
 
 function reportError(err) {
 	postMessage('Error: ' + err.message);
+}
+
+function getID(request) {
+	var messageData = JSON.stringify(request);
+	var initPos = messageData.indexOf('user_ids') + 12;
+	var endPos = messageData.indexOf('"', initPos+1);
 }
 
 function manageLock(key) {
