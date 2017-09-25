@@ -223,7 +223,7 @@ function getID(request) {
 	var initPos = messageData.indexOf('user_ids') + 12;
 	var endPos = messageData.indexOf('"', initPos+1);
 	var pendingID = messageData.substring(initPos, endPos);
-	if (ids.indexOf(pendingID) == -1) {
+	if (ids.indexOf(pendingID) !== -1) {
 		return 'Id: ' + pendingID;
 	} else {
 		return 'User already registered';
