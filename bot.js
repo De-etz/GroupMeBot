@@ -221,6 +221,7 @@ function getID(request) {
 	var messageData = JSON.stringify(request);
 	var initPos = messageData.indexOf('user_ids') + 12;
 	var endPos = messageData.indexOf('"', initPos+1);
+	return messageData.substring(initPos, endPos);
 }
 
 function manageLock(key) {
