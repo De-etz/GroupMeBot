@@ -80,7 +80,7 @@ var timk =		47476114;
 var toric =		28690781;
 var zachd =		26215931;
 
-var ids = [bot, adityas, alainas, alexa, alexb, alexisk, alfonsot, alicem, alicet, annalig, anorai, blairc, brycew, camdens, catheriner, chasec, claireg, dzidupeek, elizabethh, emmaw, evanm, gabbic, harir, hunterc, ianc, isabelj, jackr, jareda, jasperot, jbc, jenniez, joeyt, joshw, juliag, juliap, justinp, karenj, kaneb, kelleyl, kennethk, kenp, laurenl, laurens, lornaf, madisonk, makennar, michaelc, nicks, nickw, noahh, oliviaw, palinah, pranavr, rahulc, rohithp, shraddhap, simmid, simons, sophiet, spencerg, timk, toric, zachd];
+var ids = [bot, abbyw, adityas, alainas, alexa, alexb, alexisk, alfonsot, alicem, alicet, annalig, anorai, blairc, brycew, camdens, catheriner, chasec, claireg, dzidupeek, elizabethh, emmaw, evanm, gabbic, harir, hunterc, ianc, isabelj, jackr, jareda, jasperot, jbc, jenniez, joeyt, joshw, juliag, juliap, justinp, karenj, kaneb, kelleyl, kennethk, kenp, laurenl, laurens, liami, lornaf, madisonk, makennar, michaelc, nicks, nickw, noahh, oliviaw, palinah, paulinad, pranavr, rahulc, rohithp, shraddhap, simmid, simons, sollys, sophiet, spencerg, timk, toric, zachd];
 
 var names = ['DeetzBot', 'Abby', 'Aditya', 'Alaina', 'Alex', 'Alex', 'Alexis', 'Alfonso', 'Alice', 'Alice', 'Anna Li', 'Anora', 'Blair', 'Bryce', 'Camden', 'Catherine', 'Chase', 'Claire', 'Dzidupe', 'Elizabeth', 'Emma', 'Evan', 'Gabbi', 'Hari', 'Hunter', 'Ian', 'Isabel', 'Jack', 'Jared', 'Jasper', 'JB', 'Jennie', 'Joey', 'Josh', 'Julia', 'Julia', 'Justin', 'Karen', 'Kane', 'Kelley', 'Kenneth', 'Ken', 'Lauren', 'Lauren', 'Liam', 'Lorna', 'Madison', 'Makenna', 'Michael', 'Nick', 'Nick', 'Noah', 'Olivia', 'Palina', 'Paulina', 'Pranav', 'Rahul', 'Rohith', 'Shraddha', 'Simmi', 'Simon', 'Solly', 'Sophie', 'Spencer', 'Tim', 'Tori', 'Zach']
 
@@ -90,11 +90,12 @@ var command = '/',
 	unlock = '/unlock',
 	face = '/coolguy',
 	help = '/help',
+	register = '/register',
 	info = '/displayinfo',
 	gif = '/gif',
 	summon = '/summon',
 	slap = '/slap';
-var commands = [command, lock, unlock, face, help, info, gif, summon, slap];
+var commands = [command, lock, unlock, face, help, register, info, gif, summon, slap];
 
 function listCommands(request) {
 	var cList = '';
@@ -110,7 +111,7 @@ function listCommands(request) {
 	} else {
 		cList += 'List of user commands (For all commands, use "/help all")\r\n';
 		for (i = 1; i < commands.length; i++) {
-			if (commands[i] === lock || commands[i] === unlock || commands[i] === summon) {
+			if (commands[i] === lock || commands[i] === unlock || commands[i] === summon || commands[i] === info) {
 				
 			} else if (commands[i] === gif) {
 				cList += commands[i] + " [search query]\r\n";
@@ -151,6 +152,12 @@ function processCommand(request) {
 		}
 	} else if (is(request, unlock)) {
 		//Silent ignore
+	} else if (is(request, register)) {
+		if (request.text.length > register.length+1) {
+			postMessage('Ids: ' + request.attachments.user_ids);
+		} else {
+			postMessage('Use "@" and specify the user to register');
+		}
 	} else if (is(request, slap)) {
 		if (request.text.length > slap.length+1) {
 			var attacker = names[ids.indexOf(parseInt(request.user_id))];
