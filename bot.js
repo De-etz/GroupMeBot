@@ -34,8 +34,8 @@ var dzidupeek =	37853175;
 var elizabethh =5238889;
 var emmaw =		30154745;
 var evanm =		31655413;
-var harir =		20639763;
-var gabbic =	32320507;
+var harir =		32320507;
+var gabbic =	20639763;
 var hunterc =	8830642;
 var ianc =		26281232;
 var isabelj =	24401015;
@@ -167,7 +167,7 @@ function processCommand(request) {
 		}
 	} else if (is(request, slap)) {
 		if (request.text.length > slap.length+1) {
-			var attacker = names[ids.indexOf(parseInt(request.user_id))];
+			var attacker = names[ids.indexOf(parseInt(request.user_id))+1];
 			var victim = request.text.substring(slap.length + 1);
 			postMessage(slapper.generateSlap(attacker, victim));
 		} else {
@@ -223,11 +223,7 @@ function getID(request) {
 	var initPos = messageData.indexOf('user_ids') + 12;
 	var endPos = messageData.indexOf('"', initPos+1);
 	var pendingID = messageData.substring(initPos, endPos);
-	if (ids.indexOf(pendingID) === -1) {
-		return 'Id: ' + pendingID;
-	} else {
-		return 'User already registered';
-	}
+	return 'Id: ' + pendingID;
 }
 
 function manageLock(key) {
