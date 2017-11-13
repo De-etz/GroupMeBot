@@ -167,7 +167,7 @@ function processCommand(request) {
 		}
 	} else if (is(request, slap)) {
 		if (request.text.length > slap.length+1) {
-			var attacker = names[ids.indexOf(parseInt(request.user_id))+1];
+			var attacker = names[ids.indexOf(parseInt(request.user_id))];
 			var victim = request.text.substring(slap.length + 1);
 			postMessage(slapper.generateSlap(attacker, victim));
 		} else {
